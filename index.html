@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ATLAS – Luxury Journeys | Experiencias de Viaje Exclusivas</title>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <!-- Leaflet.js – mapa interactivo real (sin API key) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+</head>
+<body>
+
+<!-- ── MARQUEE SUPERIOR ── -->
+<div class="top-bar">
+    <marquee behavior="scroll" direction="left" scrollamount="4">
+        ✦ ATLAS Luxury Journeys &nbsp;·&nbsp; Experiencias únicas en más de 60 destinos exclusivos &nbsp;·&nbsp; Reservas con pago seguro SSL &nbsp;·&nbsp; Concierge disponible 24/7 &nbsp;·&nbsp; ✦ Nuevo: Safari Privado en Kenia &nbsp;·&nbsp; Crucero por el Mediterráneo Exclusivo &nbsp;·&nbsp; Retiro de Bienestar en los Alpes &nbsp;·&nbsp;
+    </marquee>
+</div>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar" id="top">
+    <a href="index.html" class="nav-logo">ATLAS<span>Luxury Journeys</span></a>
+    <ul class="nav-links">
+        <li><a href="index.html" class="active">Inicio</a></li>
+        <li><a href="productos.html">Destinos</a></li>
+        <li><a href="galeria.html">Experiencias</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <div style="display:flex;gap:1rem;align-items:center;">
+        <a href="tel:+525555550100" class="text-gold text-sm">📞 +52 55 5555-0100</a>
+        <a href="contacto.html#reservar" class="nav-btn">Reservar</a>
+    </div>
+</nav>
+
+<!-- ── ANCHOR NAV ── -->
+<div class="anchor-nav">
+    <a href="#destinos">Destinos Destacados</a>
+    <a href="#experiencias">Experiencias</a>
+    <a href="#mapa">Mapa Interactivo</a>
+    <a href="#testimonios">Testimonios</a>
+    <a href="#paquetes">Paquetes</a>
+    <a href="#newsletter">Newsletter</a>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero">
+    <div class="hero-bg" style="background-image:url('https://picsum.photos/seed/luxury-travel/1920/1080');"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <div class="hero-tag">✦ Curador de Experiencias Únicas desde 2015</div>
+        <h1>El Mundo,<br/><em>a tu Medida</em></h1>
+        <p class="hero-lead">
+            Diseñamos journeys extraordinarios para viajeros que exigen lo mejor. Desde retiros privados en Bali hasta safaris exclusivos en África: cada viaje, una obra de arte.
+        </p>
+        <div class="hero-btns">
+            <a href="productos.html" class="btn btn-gold btn-lg">Explorar Destinos</a>
+            <a href="contacto.html#reservar" class="btn btn-outline-light btn-lg">Consultar Concierge</a>
+        </div>
+    </div>
+    <a href="#destinos" class="hero-scroll">
+        <span>Descubrir</span>
+        <div class="scroll-line"></div>
+    </a>
+</section>
+
+<!-- ── STATS ── -->
+<div class="stats-strip">
+    <div>
+        <div class="stat-num"><span data-count="60">0</span><span class="stat-unit">+</span></div>
+        <div class="stat-lbl">Destinos Exclusivos</div>
+    </div>
+    <div>
+        <div class="stat-num"><span data-count="4500">0</span><span class="stat-unit">+</span></div>
+        <div class="stat-lbl">Clientes Satisfechos</div>
+    </div>
+    <div>
+        <div class="stat-num"><span data-count="9">0</span><span class="stat-unit">.8</span></div>
+        <div class="stat-lbl">Calificación Promedio</div>
+    </div>
+    <div>
+        <div class="stat-num"><span data-count="10">0</span><span class="stat-unit"></span></div>
+        <div class="stat-lbl">Años de Experiencia</div>
+    </div>
+</div>
+
+<!-- ── DESTINOS DESTACADOS ── -->
+<section class="section section-cream" id="destinos">
+    <div class="section-head fade-up">
+        <span class="eyebrow">Destinos Premier</span>
+        <h2>Journeys que <em class="italic">Transforman</em></h2>
+        <hr class="divider-gold"/>
+        <p class="lead">Colecciones de experiencias handcrafted en los rincones más extraordinarios del planeta.</p>
+    </div>
+    <div class="three-col">
+        <!-- Imagen con rollover / sustitución -->
+        <div class="img-sub fade-up" onclick="location.href='productos.html'">
+            <img src="https://picsum.photos/seed/africa01/700/500" alt="Safari África" class="img-a"/>
+            <img src="https://picsum.photos/seed/africa02/700/500" alt="Safari Atardecer" class="img-b"/>
+            <div class="img-caption">
+                <div class="img-caption-inner">
+                    <h3>Safari en Kenia</h3>
+                    <p>8 días · Masai Mara Privado</p>
+                    <span class="badge badge-gold mt-xs">Desde $85,000 MXN</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="img-sub fade-up" onclick="location.href='productos.html'">
+            <img src="https://picsum.photos/seed/bali01/700/500" alt="Bali Retiro" class="img-a"/>
+            <img src="https://picsum.photos/seed/bali02/700/500" alt="Bali Villa" class="img-b"/>
+            <div class="img-caption">
+                <div class="img-caption-inner">
+                    <h3>Retiro en Bali</h3>
+                    <p>10 días · Villa Privada con Chef</p>
+                    <span class="badge badge-terra mt-xs">Desde $72,000 MXN</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="img-sub fade-up" onclick="location.href='productos.html'">
+            <img src="https://picsum.photos/seed/medi01/700/500" alt="Mediterráneo" class="img-a"/>
+            <img src="https://picsum.photos/seed/medi02/700/600" alt="Mediterráneo Velero" class="img-b"/>
+            <div class="img-caption">
+                <div class="img-caption-inner">
+                    <h3>Mediterráneo en Velero</h3>
+                    <p>14 días · Grecia & Croacia</p>
+                    <span class="badge badge-teal mt-xs">Desde $120,000 MXN</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="text-align:center;margin-top:3rem;" class="fade-up">
+        <a href="productos.html" class="btn btn-navy">Ver Todos los Destinos</a>
+    </div>
+</section>
+
+<!-- ── MAPA INTERACTIVO CON ZONAS ── -->
+<section class="section section-sand" id="mapa">
+    <div class="section-head fade-up">
+        <span class="eyebrow">Mapa de Experiencias</span>
+        <h2>Explora Nuestros <em class="italic">Continentes</em></h2>
+        <hr class="divider-gold"/>
+        <p class="lead">Haz clic en cada región para descubrir los journeys disponibles.</p>
+    </div>
+    <div style="max-width:980px;margin:0 auto;" class="fade-up">
+
+        <style>
+            #atlas-map{height:460px;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.45);}
+            .leaflet-container{background:#0d2035 !important;}
+            .atlas-tip{
+                background:#1A2744 !important;color:#DFC080 !important;
+                border:1px solid rgba(200,164,90,.55) !important;border-radius:8px !important;
+                font-family:'Inter',sans-serif !important;font-size:.78rem !important;
+                font-weight:700 !important;letter-spacing:.08em !important;
+                padding:.3rem .9rem !important;box-shadow:0 4px 20px rgba(0,0,0,.55) !important;
+                white-space:nowrap !important;
+            }
+            .atlas-tip.leaflet-tooltip-top::before{border-top-color:#1A2744 !important;}
+            .leaflet-control-attribution{
+                font-size:.6rem !important;opacity:.35 !important;
+                background:rgba(13,32,53,.85) !important;color:rgba(255,255,255,.4) !important;
+            }
+            .leaflet-control-attribution a{color:rgba(200,164,90,.6) !important;}
+            #region-msg{text-align:center;margin-top:1.2rem;font-size:.92rem;
+                color:var(--gold-light);font-weight:700;letter-spacing:.08em;
+                min-height:1.8em;font-family:'Inter',sans-serif;transition:color .3s;}
+            .map-legend{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:1.2rem;}
+            .map-leg-btn{display:flex;align-items:center;gap:.4rem;padding:.4rem 1.1rem;
+                border-radius:50px;font-size:.74rem;font-weight:700;letter-spacing:.1em;
+                text-transform:uppercase;border:none;cursor:pointer;
+                font-family:'Inter',sans-serif;transition:.25s;}
+            .map-leg-btn:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.3);}
+        </style>
+
+        <div id="atlas-map"></div>
+
+        <p id="region-msg">&#x2192; Pasa el cursor o haz clic en un continente para explorar destinos</p>
+
+        <div class="map-legend">
+            <button class="map-leg-btn" style="background:#C8A45A;color:#1A2744;" onclick="goRegion('europa')">🏛️ Europa <strong>12</strong></button>
+            <button class="map-leg-btn" style="background:#B5644A;color:#fff;" onclick="goRegion('africa')">🦁 África <strong>8</strong></button>
+            <button class="map-leg-btn" style="background:#3A6EA5;color:#fff;" onclick="goRegion('asia')">🏯 Asia &amp; Pacífico <strong>18</strong></button>
+            <button class="map-leg-btn" style="background:#4E9FAF;color:#fff;" onclick="goRegion('america')">🌿 América <strong>10</strong></button>
+            <button class="map-leg-btn" style="background:#7BBFCC;color:#1A2744;" onclick="goRegion('oceania')">🌊 Oceanía <strong>6</strong></button>
+        </div>
+    </div>
+</section>
+
+<!-- ── EXPERIENCIAS (FEATURES) ── -->
+<section class="section section-navy" id="experiencias">
+    <div class="section-head fade-up">
+        <span class="eyebrow" style="color:var(--gold);">Nuestras Especialidades</span>
+        <h2 style="color:var(--cream);">Tipos de <em class="italic text-gold">Experiencias</em></h2>
+        <hr class="divider-gold"/>
+    </div>
+    <div class="four-col">
+        <div class="fade-up" style="text-align:center;padding:2rem;">
+            <div class="feature-icon-box" style="margin:0 auto 1rem;">🦁</div>
+            <h4 style="color:var(--cream);margin-bottom:.5rem;">Safari & Naturaleza</h4>
+            <p style="color:rgba(255,255,255,.55);font-size:.85rem;">Expediciones privadas en los ecosistemas más espectaculares del mundo.</p>
+        </div>
+        <div class="fade-up" style="text-align:center;padding:2rem;">
+            <div class="feature-icon-box" style="margin:0 auto 1rem;">⛵</div>
+            <h4 style="color:var(--cream);margin-bottom:.5rem;">Cruceros de Lujo</h4>
+            <p style="color:rgba(255,255,255,.55);font-size:.85rem;">Veleros y yates privados por el Mediterráneo, Caribe y mares del sur.</p>
+        </div>
+        <div class="fade-up" style="text-align:center;padding:2rem;">
+            <div class="feature-icon-box" style="margin:0 auto 1rem;">🧘</div>
+            <h4 style="color:var(--cream);margin-bottom:.5rem;">Retiros de Bienestar</h4>
+            <p style="color:rgba(255,255,255,.55);font-size:.85rem;">Programas holísticos en destinos de paz: Bali, Tulum, los Alpes y más.</p>
+        </div>
+        <div class="fade-up" style="text-align:center;padding:2rem;">
+            <div class="feature-icon-box" style="margin:0 auto 1rem;">🍷</div>
+            <h4 style="color:var(--cream);margin-bottom:.5rem;">Gastronomía & Cultura</h4>
+            <p style="color:rgba(255,255,255,.55);font-size:.85rem;">Tours culinarios, mercados locales, chefs estrella Michelin y bodegas privadas.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ── PAQUETES (TABLA) ── -->
+<section class="section section-cream" id="paquetes">
+    <div class="section-head fade-up">
+        <span class="eyebrow">Colecciones 2025–2026</span>
+        <h2>Paquetes <em class="italic">Seleccionados</em></h2>
+        <hr class="divider-gold"/>
+    </div>
+    <div class="fade-up" style="overflow-x:auto;">
+        <table class="atlas-table">
+            <caption>Precios en MXN por persona en habitación doble. Consulta disponibilidad.</caption>
+            <thead>
+                <tr>
+                    <th>Destino / Journey</th>
+                    <th>Duración</th>
+                    <th>Incluye</th>
+                    <th>Precio Desde</th>
+                    <th>Categoría</th>
+                    <th>Reservar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Safari Masai Mara</strong><br/><small class="text-soft">Kenia, África Oriental</small></td>
+                    <td>8 noches</td>
+                    <td>Camp exclusivo, jeep privado, guía experto</td>
+                    <td><span class="card-price" style="font-size:1.1rem;">$85,000</span></td>
+                    <td><span class="badge badge-terra">Adventure</span></td>
+                    <td><a href="contacto.html#reservar" class="btn btn-navy btn-sm">Reservar</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Bali Serenity Retreat</strong><br/><small class="text-soft">Ubud & Seminyak, Indonesia</small></td>
+                    <td>10 noches</td>
+                    <td>Villa piscina privada, yoga, chef personal</td>
+                    <td><span class="card-price" style="font-size:1.1rem;">$72,000</span></td>
+                    <td><span class="badge badge-teal">Wellness</span></td>
+                    <td><a href="contacto.html#reservar" class="btn btn-navy btn-sm">Reservar</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Mediterráneo en Velero</strong><br/><small class="text-soft">Grecia, Croacia, Montenegro</small></td>
+                    <td>14 noches</td>
+                    <td>Velero privado, tripulación, islas exclusivas</td>
+                    <td><span class="card-price" style="font-size:1.1rem;">$120,000</span></td>
+                    <td><span class="badge badge-gold">Signature</span></td>
+                    <td><a href="contacto.html#reservar" class="btn btn-navy btn-sm">Reservar</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Japón Imperial</strong><br/><small class="text-soft">Tokio, Kioto, Nara, Hakone</small></td>
+                    <td>12 noches</td>
+                    <td>Ryokan de lujo, kaiseki, acceso privado a templos</td>
+                    <td><span class="card-price" style="font-size:1.1rem;">$95,000</span></td>
+                    <td><span class="badge badge-navy">Cultural</span></td>
+                    <td><a href="contacto.html#reservar" class="btn btn-navy btn-sm">Reservar</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Patagonia Extrema</strong><br/><small class="text-soft">Torres del Paine, Argentina</small></td>
+                    <td>9 noches</td>
+                    <td>Lodge eco-luxury, trekking guiado, helicóptero</td>
+                    <td><span class="card-price" style="font-size:1.1rem;">$78,000</span></td>
+                    <td><span class="badge badge-terra">Adventure</span></td>
+                    <td><a href="contacto.html#reservar" class="btn btn-navy btn-sm">Reservar</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center mt-3">
+        <a href="productos.html" class="btn btn-gold">Ver Catálogo Completo</a>
+    </div>
+</section>
+
+<!-- ── TESTIMONIOS ── -->
+<section class="section section-sand" id="testimonios">
+    <div class="section-head fade-up">
+        <span class="eyebrow">Nuestros Viajeros</span>
+        <h2>Historias que <em class="italic">Inspiran</em></h2>
+        <hr class="divider-gold"/>
+    </div>
+    <div class="three-col">
+        <div class="testi-card fade-up">
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"El safari en Kenia superó todas mis expectativas. El equipo de ATLAS organizó cada detalle con una precisión extraordinaria. Una experiencia que llevará para siempre en el corazón."</p>
+            <div class="testi-author">
+                <img src="https://picsum.photos/seed/cli1/100/100" alt="Valentina R." class="testi-avatar"/>
+                <div>
+                    <span class="testi-name">Valentina R.</span>
+                    <span class="testi-loc">Ciudad de México · Safari Masai Mara</span>
+                </div>
+            </div>
+        </div>
+        <div class="testi-card fade-up">
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"El retiro en Bali fue una transformación total. La villa, el chef personal, las sesiones de meditación al amanecer… ATLAS entiende lo que significa el verdadero lujo."</p>
+            <div class="testi-author">
+                <img src="https://picsum.photos/seed/cli2/100/100" alt="Rodrigo M." class="testi-avatar"/>
+                <div>
+                    <span class="testi-name">Rodrigo M.</span>
+                    <span class="testi-loc">Guadalajara · Bali Serenity</span>
+                </div>
+            </div>
+        </div>
+        <div class="testi-card fade-up">
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"Navegar el Mediterráneo en velero privado es algo que no tiene precio. Los itinerarios secretos, las calas desiertas, el atardecer en Santorini. ATLAS es simplemente el mejor."</p>
+            <div class="testi-author">
+                <img src="https://picsum.photos/seed/cli3/100/100" alt="Isabella C." class="testi-avatar"/>
+                <div>
+                    <span class="testi-name">Isabella C.</span>
+                    <span class="testi-loc">Monterrey · Mediterráneo en Velero</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── LISTA DE VALORES / PROMESAS ── -->
+<section class="section section-cream">
+    <div class="two-col">
+        <div class="fade-up">
+            <span class="eyebrow">Nuestra Promesa</span>
+            <h2>Por Qué Elegir <em class="italic">ATLAS</em></h2>
+            <hr class="divider-gold" style="margin:1rem 0;"/>
+            <p class="lead mb-3">Cada journey se diseña desde cero, pensado exclusivamente para ti.</p>
+            <ul class="list-check">
+                <li>Itinerarios 100% personalizados y exclusivos</li>
+                <li>Concierge privado disponible 24/7 durante tu viaje</li>
+                <li>Hoteles y lodges de categoría 5 estrellas y boutique</li>
+                <li>Transferencias privadas en tierra, agua y aire</li>
+                <li>Guías locales expertos y certificados</li>
+                <li>Seguro de viaje premium incluido</li>
+                <li>Pago seguro con tarjeta débito/crédito (SSL + SET)</li>
+            </ul>
+            <div class="tagline-row mt-3">
+                <span class="tag-pill">Luxury</span>
+                <span class="tag-pill">Handcrafted</span>
+                <span class="tag-pill">Sustainable</span>
+                <span class="tag-pill">Private</span>
+                <span class="tag-pill">Exclusive</span>
+            </div>
+        </div>
+        <div class="fade-up">
+            <img src="https://picsum.photos/seed/promise/700/800" alt="Promesa ATLAS" style="width:100%;border-radius:var(--radius);box-shadow:var(--shadow-lg);" />
+        </div>
+    </div>
+</section>
+
+<!-- ── NEWSLETTER ── -->
+<section class="section section-navy" id="newsletter">
+    <div style="max-width:640px;margin:0 auto;text-align:center;" class="fade-up">
+        <span class="eyebrow">Inspiración en tu Inbox</span>
+        <h2 style="color:var(--cream);">Journeys &amp; <em class="italic text-gold">Secretos de Viaje</em></h2>
+        <p style="color:rgba(255,255,255,.6);margin-top:.8rem;">Recibe editoriales curadas, destinos únicos y ofertas exclusivas para nuestros suscriptores.</p>
+        <form class="newsletter-row" onsubmit="event.preventDefault();this.querySelector('input').value='';this.querySelector('button').textContent='¡Suscrito! ✦';" style="margin-top:2rem;">
+            <input type="email" placeholder="tu@email.com" required/>
+            <button type="submit" class="btn btn-gold">Suscribirme</button>
+        </form>
+        <p style="color:rgba(255,255,255,.3);font-size:.72rem;margin-top:1rem;">Sin spam. Cancelación fácil. Privacidad garantizada.</p>
+    </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+    <div class="footer-grid">
+        <div class="foot-col">
+            <div class="footer-brand">ATLAS<span>Luxury Journeys</span></div>
+            <p class="footer-tagline">"El viaje es la destilación de la vida."</p>
+            <div class="footer-social">
+                <a href="https://www.instagram.com" target="_blank" rel="noopener" class="soc-btn" title="Instagram">📸</a>
+                <a href="https://www.facebook.com"  target="_blank" rel="noopener" class="soc-btn" title="Facebook">📘</a>
+                <a href="https://www.tiktok.com"    target="_blank" rel="noopener" class="soc-btn" title="TikTok">🎵</a>
+                <a href="https://www.youtube.com"   target="_blank" rel="noopener" class="soc-btn" title="YouTube">▶</a>
+            </div>
+        </div>
+        <div class="foot-col">
+            <h5>Destinos</h5>
+            <ul>
+                <li><a href="productos.html">África & Safari</a></li>
+                <li><a href="productos.html">Asia & Pacífico</a></li>
+                <li><a href="productos.html">Europa Exclusiva</a></li>
+                <li><a href="productos.html">América Latina</a></li>
+                <li><a href="productos.html">Oceanía</a></li>
+            </ul>
+        </div>
+        <div class="foot-col">
+            <h5>Experiencias</h5>
+            <ul>
+                <li><a href="galeria.html">Safari Privado</a></li>
+                <li><a href="galeria.html">Cruceros de Lujo</a></li>
+                <li><a href="galeria.html">Retiros Wellness</a></li>
+                <li><a href="galeria.html">Gastronomía</a></li>
+                <li><a href="galeria.html">Aventura Extrema</a></li>
+            </ul>
+        </div>
+        <div class="foot-col">
+            <h5>Empresa</h5>
+            <ul>
+                <li><a href="nosotros.html">Nuestra Historia</a></li>
+                <li><a href="nosotros.html">El Equipo</a></li>
+                <li><a href="contacto.html">Reservaciones</a></li>
+                <li><a href="contacto.html#pago">Pago Seguro</a></li>
+                <li><a href="contacto.html">Aviso de Privacidad</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>&copy; 2025 ATLAS Luxury Journeys · Todos los derechos reservados</span>
+        <span>
+            <a href="contacto.html">Aviso de Privacidad</a> &nbsp;·&nbsp;
+            <a href="contacto.html#pago">Pago Seguro SSL</a>
+        </span>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+(function () {
+    /* ── MAPA LEAFLET – ATLAS Luxury Journeys ── */
+    var map = L.map('atlas-map', {
+        center: [20, 15],
+        zoom: 2,
+        scrollWheelZoom: false,
+        zoomControl: true,
+        attributionControl: true
+    });
+
+    /* Tiles CartoDB Dark Matter – gratuito, sin API key */
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 6,
+        minZoom: 1
+    }).addTo(map);
+
+    var labels = {
+        europa:  'Europa · 12 journeys exclusivos',
+        africa:  'África & Safari · 8 expediciones privadas',
+        asia:    'Asia & Pacífico · 18 destinos de ensueño',
+        america: 'América Latina · 10 aventuras extraordinarias',
+        oceania: 'Oceanía · 6 paraísos remotos'
+    };
+
+    /* ── Polígonos de continentes ── */
+    var continents = [
+        { name:'Europa',   region:'europa',  color:'#C8A45A',
+          coords:[[[71,-10],[71,30],[60,42],[52,42],[44,34],[36,28],[35,10],[38,-10],[44,-10],[48,-5],[55,8],[60,18],[65,25],[71,-10]]] },
+        { name:'África',   region:'africa',  color:'#B5644A',
+          coords:[[[37,-6],[37,42],[20,52],[0,52],[-10,40],[-35,20],[-35,-18],[0,-18],[15,-18],[20,-17],[37,-6]]] },
+        { name:'Asia',     region:'asia',    color:'#3A6EA5',
+          coords:[[[72,28],[72,140],[50,140],[25,122],[5,103],[5,80],[20,60],[30,55],[40,40],[50,38],[52,42],[60,42],[68,20],[72,28]]] },
+        { name:'América',  region:'america', color:'#4E9FAF',
+          coords:[[[72,-168],[72,-55],[15,-55],[-5,-55],[-20,-42],[-56,-68],[-56,-82],[-20,-82],[15,-82],[72,-168]]] },
+        { name:'Oceanía',  region:'oceania', color:'#7BBFCC',
+          coords:[[[-5,112],[-5,157],[-10,170],[-30,180],[-48,168],[-48,112],[-5,112]]] }
+    ];
+
+    continents.forEach(function (c) {
+        var poly = L.polygon(c.coords, {
+            color: c.color,
+            fillColor: c.color,
+            fillOpacity: 0.30,
+            weight: 1.5,
+            opacity: 0.7
+        }).addTo(map);
+
+        poly.bindTooltip(c.name, {
+            className: 'atlas-tip',
+            sticky: true,
+            direction: 'top',
+            offset: [0, -8]
+        });
+
+        poly.on('mouseover', function () {
+            this.setStyle({ fillOpacity: 0.60, weight: 2.5 });
+            var msg = document.getElementById('region-msg');
+            if (msg) msg.textContent = '→ ' + labels[c.region];
+        });
+        poly.on('mouseout', function () {
+            this.setStyle({ fillOpacity: 0.30, weight: 1.5 });
+            var msg = document.getElementById('region-msg');
+            if (msg) msg.textContent = '→ Pasa el cursor o haz clic en un continente para explorar destinos';
+        });
+        poly.on('click', function () {
+            window.location.href = 'productos.html#catalogo';
+        });
+    });
+
+    /* ── Marcadores dorados en destinos clave ── */
+    var goldIcon = L.divIcon({
+        html: '<div style="width:10px;height:10px;background:#C8A45A;border-radius:50%;border:2px solid #fff;box-shadow:0 0 8px rgba(200,164,90,.8);"></div>',
+        className: '',
+        iconSize: [10, 10],
+        iconAnchor: [5, 5]
+    });
+
+    var pins = [
+        { name:'Santorini, Grecia',   lat:36.4, lng:25.4 },
+        { name:'Masai Mara, Kenia',   lat:-1.5, lng:35.1 },
+        { name:'Bali, Indonesia',     lat:-8.4, lng:115.2 },
+        { name:'Kioto, Japón',        lat:35.0, lng:135.8 },
+        { name:'Patagonia, Chile',    lat:-50.9, lng:-73.4 },
+        { name:'Islandia',            lat:65.0, lng:-18.5 },
+        { name:'Maldivas',            lat:3.2,  lng:73.2 },
+        { name:'Toscana, Italia',     lat:43.5, lng:11.0 },
+        { name:'Seúl, Corea del Sur', lat:37.6, lng:126.9 }
+    ];
+
+    pins.forEach(function (p) {
+        L.marker([p.lat, p.lng], { icon: goldIcon })
+            .addTo(map)
+            .bindTooltip(p.name, { className:'atlas-tip', direction:'top', offset:[0,-6] });
+    });
+
+    /* ── Función para botones de leyenda ── */
+    window.goRegion = function (reg) {
+        var msg = document.getElementById('region-msg');
+        if (msg) msg.textContent = '→ ' + (labels[reg] || reg) + ' — cargando destinos...';
+        setTimeout(function () { window.location.href = 'productos.html#catalogo'; }, 400);
+    };
+})();
+</script>
+</body>
+</html>

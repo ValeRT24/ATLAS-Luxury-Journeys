@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Galería de Experiencias | ATLAS Luxury Journeys</title>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <style>
+        /* Tabs de filtro galería */
+        .gal-tabs { display:flex; gap:.8rem; flex-wrap:wrap; justify-content:center; margin-bottom:3rem; }
+        .gal-tab {
+            padding:.6rem 1.8rem; border-radius:50px; font-size:.76rem; font-weight:700;
+            letter-spacing:.1em; text-transform:uppercase; cursor:pointer;
+            border:2px solid var(--sand-mid); background:var(--white); color:var(--text-mid);
+            transition:var(--trans-fast); font-family:'Inter',sans-serif;
+        }
+        .gal-tab:hover, .gal-tab.active { background:var(--navy); color:var(--gold-light); border-color:var(--navy); }
+
+        /* LOOK FRAMES */
+        .look-frames { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:4rem; }
+        .look-frame { border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-md); background:var(--white); }
+        .look-frame header { background:var(--navy); padding:1rem 1.5rem; }
+        .look-frame header h4 { color:var(--gold-light); font-size:.82rem; letter-spacing:.16em; text-transform:uppercase; margin:0; font-family:'Inter',sans-serif; }
+        .look-frame header p { color:rgba(255,255,255,.5); font-size:.72rem; margin-top:.2rem; }
+        .look-frame .frame-body { padding:1.2rem; }
+
+        /* Video wrapper */
+        .video-wrapper { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; }
+        .video-wrapper iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+        /* Grid de inspiración */
+        .insta-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:.6rem; }
+        .insta-item { position:relative; overflow:hidden; border-radius:var(--radius-xs); aspect-ratio:1; cursor:pointer; }
+        .insta-item img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s; }
+        .insta-item:hover img { transform:scale(1.08); }
+        .insta-item .insta-overlay { position:absolute; inset:0; background:rgba(26,39,68,.55); display:flex; align-items:center; justify-content:center; opacity:0; transition:.35s; color:#fff; font-size:1.4rem; }
+        .insta-item:hover .insta-overlay { opacity:1; }
+
+        @media(max-width:900px){ .look-frames { grid-template-columns:1fr; } .insta-grid { grid-template-columns:repeat(2,1fr); } }
+    </style>
+</head>
+<body>
+
+<!-- MARQUEE -->
+<div class="top-bar">
+    <marquee behavior="scroll" direction="left" scrollamount="4">
+        ✦ Galería de Experiencias ATLAS &nbsp;·&nbsp; Safari · Bali · Mediterráneo · Japón · Patagonia &nbsp;·&nbsp; Momentos que cambian la vida &nbsp;·&nbsp; Reserva tu journey en contacto.html &nbsp;·&nbsp; Pago seguro SSL + SET ✦
+    </marquee>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <a href="index.html" class="nav-logo">ATLAS<span>Luxury Journeys</span></a>
+    <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="productos.html">Destinos</a></li>
+        <li><a href="galeria.html" class="active">Experiencias</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <a href="contacto.html#reservar" class="nav-btn">Reservar</a>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-head" style="background-image:none;">
+    <span class="eyebrow">Momentos que Cambian la Vida</span>
+    <h1>Galería de <em class="italic" style="color:var(--gold-light);">Experiencias</em></h1>
+    <p class="lead">Imágenes auténticas de journeys reales. La fotografía como prueba de que lo extraordinario existe.</p>
+    <div class="breadcrumb mt-2"><a href="index.html">Inicio</a> → Experiencias</div>
+</header>
+
+<!-- ANCHOR NAV -->
+<div class="anchor-nav">
+    <a href="#galeria">Galería</a>
+    <a href="#colecciones">Colecciones</a>
+    <a href="#video">Video Journey</a>
+    <a href="#inspiracion">Inspiración</a>
+    <a href="#guia-visual">Guía Visual</a>
+</div>
+
+<!-- GALERÍA MASONRY -->
+<section class="section section-cream" id="galeria">
+    <div class="section-head fade-up">
+        <span class="eyebrow">Momentos Capturados</span>
+        <h2>Instantáneas de <em class="italic">Journeys Reales</em></h2>
+        <hr class="divider-gold"/>
+    </div>
+
+    <!-- Filtros -->
+    <div class="gal-tabs fade-up">
+        <button class="gal-tab active" data-filter="all">Todos</button>
+        <button class="gal-tab" data-filter="safari">Safari</button>
+        <button class="gal-tab" data-filter="wellness">Wellness</button>
+        <button class="gal-tab" data-filter="crucero">Cruceros</button>
+        <button class="gal-tab" data-filter="cultural">Cultural</button>
+        <button class="gal-tab" data-filter="adventure">Aventura</button>
+    </div>
+
+    <!-- Masonry -->
+    <div class="masonry" id="gal-masonry">
+
+        <div class="masonry-item gallery-img fade-up" data-cat="safari"
+             data-src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1200&q=85"
+             data-caption="Atardecer en Masai Mara – Kenia">
+            <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800&q=80" alt="Safari Masai Mara"/>
+            <div class="m-overlay">
+                <span class="m-sub">Safari</span>
+                <span class="m-title">Atardecer en Masai Mara</span>
+            </div>
+        </div>
+
+        <div class="masonry-item gallery-img fade-up" data-cat="wellness"
+             data-src="https://images.unsplash.com/photo-1545389336-cf090694435e?w=1200&q=85"
+             data-caption="Yoga al amanecer – Ubud, Bali">
+            <img src="https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&q=80" alt="Yoga Bali"/>
+            <div class="m-overlay">
+                <span class="m-sub">Wellness</span>
+                <span class="m-title">Yoga al Amanecer, Bali</span>
+            </div>
+        </div>
+
+        <div class="masonry-item gallery-img fade-up" data-cat="crucero"
+             data-src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=1200&q=85"
+             data-caption="Santorini desde el velero – Grecia">
+            <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=800&q=80" alt="Santorini Grecia"/>
+            <div class="m-overlay">
+                <span class="m-sub">Crucero</span>
+                <span class="m-title">Santorini desde el Mar</span>
+            </div>
+        </div>
+
+        <div class="masonry-item gallery-img fade-up" data-cat="cultural"
+             data-src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=1200&q=85"
+             data-caption="Templo Fushimi Inari – Kioto, Japón">
+            <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80" alt="Fushimi Inari Kioto"/>
+            <div class="m-overlay">
+                <span class="m-sub">Cultural</span>
+                <span class="m-title">Fushimi Inari, Kioto</span>
+            </div>
+        </div>
+
+        <div class="masonry-item gallery-img fade-up" data-cat="adventure"
+             data-src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=85"
+             data-caption="Torres del Paine – Patagonia Chilena">
+            <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80" alt="Torres del Paine Patagonia"/>
+            <div class="m-overlay">
+                <span class="m-sub">Aventura</span>
+                <span class="m-title">Torres del Paine</span>
+            </div>
+        </div>
+
+        <div class="masonry-item gallery-img fade-up" data-cat="safari"
+             data-src="https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=1200&q=85"
+             data-caption="Elefantes al amanecer – Amboseli, Kenia">
+            <img src="https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=800&q=80" alt="Elefantes Kenia"/>
+            <div class="m-overlay">
+                <span class="m-sub">Safari</span>
+                <span class="m-title">Elefantes en Amboseli</span>
+            </div>
+        </div>
+
+        <div class="masonry-item gallery-img fade-up" data-cat="wellness"
+             data-src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85"
+             data-caption="Alpes Suizos – Retiro en Zermatt">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Alpes Suizos"/>
+            <div class="m-overlay">
+                <span class="m-sub">Wellness</span>
+                <span class="m-title">Spa Alpino en Zermatt</span>
+            </div>
+        </div>
+
+        <div class="masonry-item gallery-img fade-up" data-cat="cultural"
+             data-src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=1200&q=85"
+             data-caption="Gastronomía en la Toscana – Italia">
+            <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80" alt="Toscana Italia"/>
+            <div class="m-overlay">
+                <span class="m-sub">Cultural</span>
+                <span class="m-title">Toscana Gastronómica</span>
+            </div>
+        </div>
+
+        <div class="masonry-item gallery-img fade-up" data-cat="crucero"
+             data-src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1200&q=85"
+             data-caption="Fiordos de Noruega – crucero privado">
+            <img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=800&q=80" alt="Fiordos Noruega"/>
+            <div class="m-overlay">
+                <span class="m-sub">Crucero</span>
+                <span class="m-title">Fiordos de Noruega</span>
+            </div>
+        </div>
+
+    </div><!-- /masonry -->
+</section>
+
+<!-- COLECCIONES (iframes) -->
+<section class="section section-sand" id="colecciones">
+    <div class="section-head fade-up">
+        <span class="eyebrow">Colecciones Temáticas</span>
+        <h2>Cuatro <em class="italic">Universos de Viaje</em></h2>
+        <hr class="divider-gold"/>
+        <p class="lead">Cada colección es un estudio de un tipo de experiencia llevada a su máxima expresión.</p>
+    </div>
+
+    <div class="look-frames fade-up">
+
+        <!-- Frame 1: Safari Collection -->
+        <div class="look-frame">
+            <header>
+                <h4>🦁 Colección Safari</h4>
+                <p>África &amp; Naturaleza Salvaje</p>
+            </header>
+            <div class="frame-body">
+                <iframe
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=34.0%2C-2.5%2C36.0%2C-0.5&amp;layer=mapnik&amp;marker=-1.5%2C35.0"
+                    height="280" title="Mapa Masai Mara, Kenia" style="border:none;width:100%" loading="lazy">
+                </iframe>
+                <div style="padding:1rem 0;">
+                    <p style="font-size:.85rem;color:var(--text-soft);">Masai Mara · Serengeti · Kruger · Amboseli · Okavango Delta. Los ecosistemas más espectaculares del planeta.</p>
+                    <a href="productos.html" class="btn btn-terra btn-sm mt-2">Ver Safaris</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Frame 2: Wellness Collection -->
+        <div class="look-frame">
+            <header>
+                <h4>🧘 Colección Wellness</h4>
+                <p>Retiros &amp; Bienestar Profundo</p>
+            </header>
+            <div class="frame-body">
+                <iframe
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=115.05%2C-8.65%2C115.45%2C-8.30&amp;layer=mapnik&amp;marker=-8.507%2C115.263"
+                    height="280" title="Mapa Ubud, Bali" style="border:none;width:100%" loading="lazy">
+                </iframe>
+                <div style="padding:1rem 0;">
+                    <p style="font-size:.85rem;color:var(--text-soft);">Bali · Tulum · Alpes Suizos · Sri Lanka · Maldivas. Destinos donde el alma encuentra su ritmo.</p>
+                    <a href="productos.html" class="btn btn-teal btn-sm mt-2" style="background:var(--teal);color:#fff;border-color:var(--teal);">Ver Wellness</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Frame 3: Mediterráneo -->
+        <div class="look-frame">
+            <header>
+                <h4>⛵ Colección Mediterráneo</h4>
+                <p>Cruceros &amp; Mar Azul</p>
+            </header>
+            <div class="frame-body">
+                <iframe
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=25.30%2C36.35%2C25.55%2C36.53&amp;layer=mapnik&amp;marker=36.43%2C25.43"
+                    height="280" title="Mapa Santorini, Grecia" style="border:none;width:100%" loading="lazy">
+                </iframe>
+                <div style="padding:1rem 0;">
+                    <p style="font-size:.85rem;color:var(--text-soft);">Grecia · Croacia · Montenegro · Turquía · Islas Baleares. El Mediterráneo a bordo de tu velero privado.</p>
+                    <a href="productos.html" class="btn btn-navy btn-sm mt-2">Ver Cruceros</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Frame 4: Asia Cultural -->
+        <div class="look-frame">
+            <header>
+                <h4>🏯 Colección Asia Cultural</h4>
+                <p>Templos · Gastronomía · Historia</p>
+            </header>
+            <div class="frame-body">
+                <iframe
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=135.60%2C34.90%2C135.90%2C35.10&amp;layer=mapnik&amp;marker=35.011%2C135.768"
+                    height="280" title="Mapa Kioto, Japón" style="border:none;width:100%" loading="lazy">
+                </iframe>
+                <div style="padding:1rem 0;">
+                    <p style="font-size:.85rem;color:var(--text-soft);">Japón · Tailandia · Vietnam · Camboya · India. Asia en toda su profundidad cultural y espiritual.</p>
+                    <a href="productos.html" class="btn btn-gold btn-sm mt-2">Ver Asia</a>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /look-frames -->
+</section>
+
+<!-- VIDEO JOURNEY -->
+<section class="section section-navy" id="video">
+    <div class="section-head fade-up">
+        <span class="eyebrow">Documental de Journey</span>
+        <h2 style="color:var(--cream);">Un Año de <em class="italic text-gold">Journeys Extraordinarios</em></h2>
+        <hr class="divider-gold"/>
+        <p style="color:rgba(255,255,255,.6);">Nuestro documental anual captura los momentos más increíbles de los journeys ATLAS 2024.</p>
+    </div>
+    <div style="max-width:860px;margin:0 auto;" class="fade-up">
+        <div class="iframe-wrap" style="border-color:rgba(200,164,90,.3);">
+            <div class="video-wrapper">
+                <iframe
+                    src="https://player.vimeo.com/video/198897509?autoplay=0&color=c8a45a&title=0&byline=0&portrait=0"
+                    title="Japan \u2013 Luxury Travel Short Film"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+        <p style="text-align:center;color:rgba(255,255,255,.45);font-size:.8rem;margin-top:1rem;font-style:italic;">
+            ATLAS Luxury Journeys – Momentos Extraordinarios 2024 · Vimeo
+        </p>
+    </div>
+</section>
+
+<!-- GALERÍA DE INSPIRACIÓN -->
+<section class="section section-cream" id="inspiracion">
+    <div class="section-head fade-up">
+        <span class="eyebrow">Grid de Inspiración</span>
+        <h2>Momentos <em class="italic">Sin Filtro</em></h2>
+        <hr class="divider-gold"/>
+        <p class="lead">Fotografías auténticas de nuestros viajeros en destino.</p>
+    </div>
+    <div class="insta-grid fade-up" style="max-width:780px;margin:0 auto;">
+        <div class="insta-item gallery-img" data-src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=900&q=85" data-caption="Safari matutino – Kenia">
+            <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=600&q=80" alt="Safari Kenia"/>
+            <div class="insta-overlay">🦁</div>
+        </div>
+        <div class="insta-item gallery-img" data-src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=900&q=85" data-caption="Arrozales de Bali al amanecer">
+            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80" alt="Bali Indonesia"/>
+            <div class="insta-overlay">🌅</div>
+        </div>
+        <div class="insta-item gallery-img" data-src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=900&q=85" data-caption="Santorini desde el velero">
+            <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&q=80" alt="Santorini Grecia"/>
+            <div class="insta-overlay">⛵</div>
+        </div>
+        <div class="insta-item gallery-img" data-src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=900&q=85" data-caption="Templos Fushimi Inari – Kioto">
+            <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&q=80" alt="Kioto Japón"/>
+            <div class="insta-overlay">🏯</div>
+        </div>
+        <div class="insta-item gallery-img" data-src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=900&q=85" data-caption="Patagonia – Torres del Paine">
+            <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80" alt="Patagonia Surámerica"/>
+            <div class="insta-overlay">🏔️</div>
+        </div>
+        <div class="insta-item" style="cursor:pointer;" onclick="location.href='contacto.html'">
+            <img src="https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?w=600&q=80" alt="Viajeros ATLAS"/>
+            <div class="insta-overlay" style="opacity:1;flex-direction:column;gap:.5rem;background:rgba(26,39,68,.75);">
+                <span style="font-size:2rem;">📸</span>
+                <span style="font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;">Tu Journey Aquí</span>
+            </div>
+        </div>
+        <div class="insta-item gallery-img" data-src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=85" data-caption="Retiro en los Alpes Suizos">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Alpes Suizos"/>
+            <div class="insta-overlay">🧘</div>
+        </div>
+        <div class="insta-item gallery-img" data-src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85" data-caption="Cena gourmet privada en Italia">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Cena gourmet Italia"/>
+            <div class="insta-overlay">🍷</div>
+        </div>
+        <div class="insta-item gallery-img" data-src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=900&q=85" data-caption="Aurora Boreal – Islandia">
+            <img src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=600&q=80" alt="Aurora Boreal Islandia"/>
+            <div class="insta-overlay">🌌</div>
+        </div>
+    </div>
+</section>
+
+<!-- GUÍA VISUAL / TABLA -->
+<section class="section section-sand" id="guia-visual">
+    <div class="section-head fade-up">
+        <span class="eyebrow">Guía Visual</span>
+        <h2>Qué Esperar de Cada <em class="italic">Experiencia</em></h2>
+        <hr class="divider-gold"/>
+    </div>
+    <div class="fade-up" style="overflow-x:auto;">
+        <table class="atlas-table">
+            <caption>Comparativa orientativa de experiencias ATLAS · Cada journey se personaliza según tus preferencias.</caption>
+            <thead>
+                <tr>
+                    <th>Experiencia</th>
+                    <th>Mejor Para</th>
+                    <th>Nivel Físico</th>
+                    <th>Clima Recomendado</th>
+                    <th>Duración Ideal</th>
+                    <th>Highlight</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>🦁 Safari en África</td>
+                    <td>Amantes fauna &amp; fotografía</td>
+                    <td><span class="badge badge-teal">Moderado</span></td>
+                    <td>Temporada seca (Jul–Oct)</td>
+                    <td>7–10 noches</td>
+                    <td>La Gran Migración</td>
+                </tr>
+                <tr>
+                    <td>🧘 Retiro Bali/Asia</td>
+                    <td>Bienestar, desconexión total</td>
+                    <td><span class="badge badge-gold">Suave</span></td>
+                    <td>Abr–Jun / Sep–Nov</td>
+                    <td>7–14 noches</td>
+                    <td>Ceremonia de purificación</td>
+                </tr>
+                <tr>
+                    <td>⛵ Crucero Mediterráneo</td>
+                    <td>Libertad, romance, cultura</td>
+                    <td><span class="badge badge-gold">Suave</span></td>
+                    <td>May–Sep</td>
+                    <td>10–21 noches</td>
+                    <td>Calas secretas en Grecia</td>
+                </tr>
+                <tr>
+                    <td>🏯 Japón Cultural</td>
+                    <td>Historia, gastronomía, arte</td>
+                    <td><span class="badge badge-teal">Moderado</span></td>
+                    <td>Mar–May / Oct–Nov</td>
+                    <td>10–14 noches</td>
+                    <td>Kioto en primavera</td>
+                </tr>
+                <tr>
+                    <td>🏔️ Aventura Extrema</td>
+                    <td>Exploradores, adrenalina</td>
+                    <td><span class="badge badge-terra">Alto</span></td>
+                    <td>Nov–Mar (Patagonia)</td>
+                    <td>9–12 noches</td>
+                    <td>Torres del Paine amanecer</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center mt-4" class="fade-up">
+        <a href="contacto.html#reservar" class="btn btn-gold btn-lg">Diseña Tu Journey Perfecto</a>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-grid">
+        <div class="foot-col">
+            <div class="footer-brand">ATLAS<span>Luxury Journeys</span></div>
+            <p class="footer-tagline">"El viaje es la destilación de la vida."</p>
+            <div class="footer-social">
+                <a href="https://www.instagram.com" target="_blank" rel="noopener" class="soc-btn">📸</a>
+                <a href="https://www.facebook.com"  target="_blank" rel="noopener" class="soc-btn">📘</a>
+                <a href="https://www.youtube.com"   target="_blank" rel="noopener" class="soc-btn">▶</a>
+            </div>
+        </div>
+        <div class="foot-col">
+            <h5>Destinos</h5>
+            <ul>
+                <li><a href="productos.html">Safari</a></li>
+                <li><a href="productos.html">Wellness</a></li>
+                <li><a href="productos.html">Cruceros</a></li>
+                <li><a href="productos.html">Cultural</a></li>
+            </ul>
+        </div>
+        <div class="foot-col">
+            <h5>Empresa</h5>
+            <ul>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </div>
+        <div class="foot-col">
+            <h5>Legal</h5>
+            <ul>
+                <li><a href="contacto.html#privacidad">Privacidad</a></li>
+                <li><a href="contacto.html#pago">Pago Seguro</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>&copy; 2025 ATLAS Luxury Journeys</span>
+        <span><a href="contacto.html#privacidad">Aviso de Privacidad</a></span>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+    // Conectar tabs de galería con filtro
+    document.querySelectorAll('.gal-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.gal-tab').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const f = btn.dataset.filter;
+            document.querySelectorAll('#gal-masonry [data-cat]').forEach(item => {
+                item.style.display = (f === 'all' || item.dataset.cat === f) ? '' : 'none';
+            });
+        });
+    });
+</script>
+</body>
+</html>
