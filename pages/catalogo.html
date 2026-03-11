@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo — QUEBIATH Boutique</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .catalog-layout { max-width: 1300px; margin: 0 auto; padding: 2rem; display: grid; grid-template-columns: 260px 1fr; gap: 3rem; align-items: start; }
+    .sidebar { position: sticky; top: 90px; }
+    .sidebar-section { background: white; border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.2rem; box-shadow: 0 2px 16px var(--shadow); }
+    .sidebar-title { font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; font-weight: 600; }
+    .sidebar-category { display: flex; justify-content: space-between; align-items: center; padding: 0.55rem 0; border-bottom: 1px solid var(--beige); cursor: pointer; font-size: 0.88rem; transition: color 0.2s; }
+    .sidebar-category:last-child { border-bottom: none; }
+    .sidebar-category:hover, .sidebar-category.active { color: var(--rose-dark); }
+    .sidebar-category .count { font-size: 0.72rem; color: var(--muted); background: var(--cream); padding: 0.1rem 0.5rem; border-radius: 20px; }
+    .price-range { width: 100%; accent-color: var(--rose); }
+    .price-labels { display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--muted); margin-top: 0.4rem; }
+    .color-filter { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .color-filter-btn { width: 28px; height: 28px; border-radius: 50%; border: 2.5px solid transparent; cursor: pointer; transition: border-color 0.2s; }
+    .color-filter-btn.active { border-color: var(--charcoal); }
+    .catalog-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+    .catalog-sort { display: flex; align-items: center; gap: 0.8rem; font-size: 0.85rem; }
+    .catalog-sort select { padding: 0.5rem 1rem; border: 1.5px solid var(--beige); border-radius: 8px; font-size: 0.85rem; background: white; color: var(--charcoal); cursor: pointer; }
+    .catalog-count { font-size: 0.85rem; color: var(--muted); }
+    .view-toggle { display: flex; gap: 0.3rem; }
+    .view-btn { width: 34px; height: 34px; border-radius: 6px; display: flex; align-items: center; justify-content: center; border: 1.5px solid var(--beige); background: white; color: var(--muted); cursor: pointer; transition: var(--transition); }
+    .view-btn.active { background: var(--charcoal); border-color: var(--charcoal); color: white; }
+    .catalog-search { display: flex; align-items: center; gap: 0; border: 1.5px solid var(--beige); border-radius: 50px; overflow: hidden; background: white; }
+    .catalog-search input { flex: 1; padding: 0.6rem 1.2rem; border: none; background: transparent; font-size: 0.88rem; outline: none; min-width: 0; }
+    .catalog-search button { padding: 0.6rem 1rem; background: var(--charcoal); color: white; border-radius: 0 50px 50px 0; font-size: 0.85rem; transition: background 0.2s; }
+    .catalog-search button:hover { background: var(--rose-dark); }
+    @media(max-width:900px){ .catalog-layout{ grid-template-columns:1fr; } .sidebar{ position:static; } }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <a href="../index.html" class="nav-logo">
+    <span class="brand">QUEBIATH</span>
+    <span class="tagline">Boutique · Moda Femenina</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Inicio</a></li>
+    <li><a href="catalogo.html" class="active">Catálogo</a></li>
+    <li><a href="nosotras.html">Nosotras</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <div class="nav-icons">
+    <button class="nav-icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <button class="nav-icon-btn"><i class="fa-regular fa-heart"></i></button>
+    <button class="nav-icon-btn" id="cartBtn">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <span class="cart-count" id="cartCount">3</span>
+    </button>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html">Inicio</a>
+  <a href="catalogo.html">Catálogo</a>
+  <a href="nosotras.html">Nosotras</a>
+  <a href="contacto.html">Contacto</a>
+</div>
+
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<aside class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Mi Bolsa</h3>
+    <button class="cart-close" onclick="closeCart()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-subtotal"><span class="label">Total</span><span class="value" id="cartTotalDisplay">$4,870 MXN</span></div>
+    <a href="checkout.html" class="btn btn-primary btn-full" style="margin-top:1rem;">Finalizar Compra <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</aside>
+
+<div style="margin-top:72px;">
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="../index.html">Inicio</a><span>/</span><span>Catálogo</span></div>
+    <h1>Nuestra <span style="color:var(--rose);font-style:italic;">Colección</span></h1>
+    <p class="section-desc">Todas las piezas que necesitas para brillar cada día.</p>
+  </div>
+</div>
+
+<div style="background:white;padding:1rem 2rem;border-bottom:1px solid var(--beige);">
+  <div style="max-width:1300px;margin:0 auto;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">
+    <form class="catalog-search" onsubmit="searchProducts(event)" style="flex:1;min-width:200px;max-width:360px;">
+      <input type="text" id="searchInput" placeholder="Buscar vestidos, blusas..." autocomplete="off">
+      <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+    <div class="filter-tabs" style="margin:0;gap:0.4rem;">
+      <button class="filter-tab active" data-filter="all">Todo</button>
+      <button class="filter-tab" data-filter="vestidos">Vestidos</button>
+      <button class="filter-tab" data-filter="blusas">Blusas</button>
+      <button class="filter-tab" data-filter="pantalones">Pantalones</button>
+      <button class="filter-tab" data-filter="faldas">Faldas</button>
+      <button class="filter-tab" data-filter="accesorios">Accesorios</button>
+    </div>
+  </div>
+</div>
+
+<div class="catalog-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">Categorías</div>
+      <div class="sidebar-category active" onclick="filterCat('all')">Todas las piezas <span class="count">525</span></div>
+      <div class="sidebar-category" onclick="filterCat('vestidos')">Vestidos <span class="count">87</span></div>
+      <div class="sidebar-category" onclick="filterCat('blusas')">Blusas <span class="count">124</span></div>
+      <div class="sidebar-category" onclick="filterCat('pantalones')">Pantalones <span class="count">56</span></div>
+      <div class="sidebar-category" onclick="filterCat('faldas')">Faldas <span class="count">39</span></div>
+      <div class="sidebar-category" onclick="filterCat('accesorios')">Accesorios <span class="count">200+</span></div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Precio</div>
+      <input type="range" min="200" max="6000" value="6000" class="price-range" id="priceRange" oninput="filterPrice(this.value)">
+      <div class="price-labels"><span>$200</span><span id="priceMax">$6,000</span></div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Talla</div>
+      <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+        <button class="size-btn" onclick="this.classList.toggle('active')">XS</button>
+        <button class="size-btn" onclick="this.classList.toggle('active')">S</button>
+        <button class="size-btn" onclick="this.classList.toggle('active')">M</button>
+        <button class="size-btn" onclick="this.classList.toggle('active')">L</button>
+        <button class="size-btn" onclick="this.classList.toggle('active')">XL</button>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Color</div>
+      <div class="color-filter">
+        <div class="color-filter-btn" style="background:#F9F4EF;border:1.5px solid #ddd;" onclick="this.classList.toggle('active')" title="Crema"></div>
+        <div class="color-filter-btn" style="background:#F2C9CE;" onclick="this.classList.toggle('active')" title="Rosa claro"></div>
+        <div class="color-filter-btn" style="background:#E8929C;" onclick="this.classList.toggle('active')" title="Rosa"></div>
+        <div class="color-filter-btn" style="background:#C9626E;" onclick="this.classList.toggle('active')" title="Rosa oscuro"></div>
+        <div class="color-filter-btn" style="background:#E8D9C8;" onclick="this.classList.toggle('active')" title="Beige"></div>
+        <div class="color-filter-btn" style="background:#C9A882;" onclick="this.classList.toggle('active')" title="Camel"></div>
+        <div class="color-filter-btn" style="background:#3A2F2F;" onclick="this.classList.toggle('active')" title="Negro"></div>
+        <div class="color-filter-btn" style="background:#FFFFFF;border:1.5px solid #ddd;" onclick="this.classList.toggle('active')" title="Blanco"></div>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Disponibilidad</div>
+      <label style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;cursor:pointer;margin-bottom:0.5rem;">
+        <input type="checkbox" checked style="accent-color:var(--rose);" id="inStockFilter"> En existencia
+      </label>
+      <label style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;cursor:pointer;">
+        <input type="checkbox" style="accent-color:var(--rose);" id="saleFilter"> En oferta
+      </label>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <div>
+    <div class="catalog-header">
+      <span class="catalog-count" id="catalogCount">Mostrando 8 piezas</span>
+      <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;">
+        <div class="catalog-sort">
+          <span style="font-size:0.78rem;color:var(--muted);">Ordenar:</span>
+          <select id="sortSelect" onchange="sortProducts()">
+            <option value="default">Recomendados</option>
+            <option value="price-asc">Precio: Menor a mayor</option>
+            <option value="price-desc">Precio: Mayor a menor</option>
+            <option value="newest">Más nuevos</option>
+            <option value="rating">Mejor valorados</option>
+          </select>
+        </div>
+        <div class="view-toggle">
+          <button class="view-btn active" onclick="setView('grid',this)" title="Cuadrícula"><i class="fa-solid fa-grip"></i></button>
+          <button class="view-btn" onclick="setView('list',this)" title="Lista"><i class="fa-solid fa-list"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="products-grid" id="catalogGrid"></div>
+    <div style="text-align:center;margin-top:3rem;">
+      <button class="btn btn-outline" onclick="showToast('🎀 Cargando más piezas...')">Cargar más <i class="fa-solid fa-arrow-down"></i></button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="brand">QUEBIATH</span>
+      <span class="tagline">Boutique · Moda Femenina</span>
+      <p>By Quebiath Azul Morales Tejeda.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-btn"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#" class="social-btn"><i class="fa-brands fa-pinterest"></i></a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Colecciones</h4><ul><li><a href="catalogo.html">Vestidos</a></li><li><a href="catalogo.html">Blusas</a></li><li><a href="catalogo.html">Accesorios</a></li></ul></div>
+    <div class="footer-col"><h4>Ayuda</h4><ul><li><a href="#">FAQ</a></li><li><a href="#">Envíos</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacidad</a></li><li><a href="#">Términos</a></li><li><a href="#">SSL</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 QUEBIATH Boutique. By Quebiath Azul Morales Tejeda.</p>
+    <div class="footer-payments">
+      <span class="payment-badge">🔒 SSL</span><span class="payment-badge">Visa</span><span class="payment-badge">MC</span><span class="payment-badge">SET</span>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
+<div class="toast" id="toast"></div>
+
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  let currentProducts = [];
+
+  function initCatalog() {
+    currentProducts = DB.query.getAllProducts();
+    renderCatalog(currentProducts);
+  }
+
+  function renderCatalog(products) {
+    const grid = document.getElementById('catalogGrid');
+    document.getElementById('catalogCount').textContent = `Mostrando ${products.length} piezas`;
+    if (products.length === 0) {
+      grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:4rem;color:var(--muted);">
+        <div style="font-size:3rem;margin-bottom:1rem;">🔍</div>
+        <p>No encontramos piezas con ese criterio.</p>
+        <button class="btn btn-rose btn-sm" style="margin-top:1rem;" onclick="filterCat('all')">Ver todo</button>
+      </div>`;
+      return;
+    }
+    grid.innerHTML = products.map(p => renderProductCard(p, false)).join('');
+    observeCards();
+  }
+
+  function filterCat(cat) {
+    document.querySelectorAll('.sidebar-category').forEach(el => el.classList.remove('active'));
+    event.target.closest('.sidebar-category')?.classList.add('active');
+    document.querySelectorAll('.filter-tab').forEach(b => {
+      b.classList.toggle('active', b.dataset.filter === cat);
+    });
+    currentProducts = cat === 'all' ? DB.query.getAllProducts() : DB.query.getByCategory(cat);
+    renderCatalog(currentProducts);
+  }
+
+  function filterPrice(val) {
+    document.getElementById('priceMax').textContent = '$' + parseInt(val).toLocaleString('es-MX');
+    const filtered = DB.query.getAllProducts().filter(p => p.price <= parseInt(val));
+    renderCatalog(filtered);
+  }
+
+  function sortProducts() {
+    const val = document.getElementById('sortSelect').value;
+    let sorted = [...currentProducts];
+    if (val === 'price-asc') sorted.sort((a,b) => a.price - b.price);
+    else if (val === 'price-desc') sorted.sort((a,b) => b.price - a.price);
+    else if (val === 'newest') sorted = sorted.filter(p => p.isNew).concat(sorted.filter(p => !p.isNew));
+    else if (val === 'rating') sorted.sort((a,b) => b.rating - a.rating);
+    renderCatalog(sorted);
+  }
+
+  function searchProducts(e) {
+    e.preventDefault();
+    const q = document.getElementById('searchInput').value.trim();
+    if (!q) { initCatalog(); return; }
+    const results = DB.query.search(q);
+    renderCatalog(results);
+  }
+
+  function setView(mode, btn) {
+    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const grid = document.getElementById('catalogGrid');
+    if (mode === 'list') {
+      grid.style.gridTemplateColumns = '1fr';
+    } else {
+      grid.style.gridTemplateColumns = '';
+    }
+  }
+
+  function observeCards() {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.product-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      obs.observe(el);
+    });
+  }
+
+  // Filter tabs override for catalog page
+  document.querySelectorAll('.filter-tab').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const filter = this.dataset.filter;
+      currentProducts = filter === 'all' ? DB.query.getAllProducts() : DB.query.getByCategory(filter);
+      renderCatalog(currentProducts);
+    });
+  });
+
+  initCatalog();
+</script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — QUEBIATH Boutique</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <a href="../index.html" class="nav-logo">
+    <span class="brand">QUEBIATH</span>
+    <span class="tagline">Boutique · Moda Femenina</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Inicio</a></li>
+    <li><a href="catalogo.html">Catálogo</a></li>
+    <li><a href="nosotras.html">Nosotras</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <div class="nav-icons">
+    <button class="nav-icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <button class="nav-icon-btn"><i class="fa-regular fa-heart"></i></button>
+    <button class="nav-icon-btn" id="cartBtn">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <span class="cart-count" id="cartCount">3</span>
+    </button>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html">Inicio</a>
+  <a href="catalogo.html">Catálogo</a>
+  <a href="nosotras.html">Nosotras</a>
+  <a href="contacto.html">Contacto</a>
+</div>
+
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<aside class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Mi Bolsa</h3>
+    <button class="cart-close" onclick="closeCart()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-subtotal"><span class="label">Total</span><span class="value" id="cartTotalDisplay">$4,870 MXN</span></div>
+    <a href="checkout.html" class="btn btn-primary btn-full" style="margin-top:1rem;">Finalizar Compra</a>
+  </div>
+</aside>
+
+<div style="margin-top:72px;">
+  <div class="page-hero">
+    <div class="breadcrumb">
+      <a href="../index.html">Inicio</a><span>/</span>
+      <a href="catalogo.html">Catálogo</a><span>/</span>
+      <span>Checkout</span>
+    </div>
+    <h1>Finaliza tu <span style="color:var(--rose);font-style:italic;">compra</span></h1>
+  </div>
+</div>
+
+<section style="padding:3rem 2rem;">
+  <!-- Steps -->
+  <div class="steps-bar">
+    <div class="step-item completed">
+      <div class="step-circle"><i class="fa-solid fa-check"></i></div>
+      <span class="step-label">Bolsa</span>
+    </div>
+    <div class="step-item active">
+      <div class="step-circle">2</div>
+      <span class="step-label">Datos</span>
+    </div>
+    <div class="step-item pending">
+      <div class="step-circle">3</div>
+      <span class="step-label">Pago</span>
+    </div>
+    <div class="step-item pending">
+      <div class="step-circle">4</div>
+      <span class="step-label">Confirmación</span>
+    </div>
+  </div>
+
+  <div class="checkout-layout">
+    <!-- Left: Forms -->
+    <div>
+      <!-- Datos de contacto -->
+      <div class="checkout-section">
+        <h3><i class="fa-regular fa-user" style="color:var(--gold);margin-right:0.5rem;"></i>Datos de contacto</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Nombre *</label>
+            <input type="text" class="form-input" placeholder="Nombre" id="fname" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Apellido *</label>
+            <input type="text" class="form-input" placeholder="Apellido" id="lname" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email *</label>
+            <input type="email" class="form-input" placeholder="tu@email.com" id="email" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Teléfono</label>
+            <input type="tel" class="form-input" placeholder="+52 (55) 0000-0000" id="phone" autocomplete="tel">
+          </div>
+        </div>
+      </div>
+
+      <!-- Dirección de envío -->
+      <div class="checkout-section">
+        <h3><i class="fa-solid fa-location-dot" style="color:var(--gold);margin-right:0.5rem;"></i>Dirección de envío</h3>
+        <div class="form-row">
+          <div class="form-group full">
+            <label class="form-label">Calle y número *</label>
+            <input type="text" class="form-input" placeholder="Av. Presidente Masaryk 123, Int. 4" id="street" required autocomplete="street-address">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Colonia *</label>
+            <input type="text" class="form-input" placeholder="Polanco" id="colonia" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">C.P. *</label>
+            <input type="text" class="form-input" placeholder="11560" id="cp" maxlength="5" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Ciudad *</label>
+            <input type="text" class="form-input" placeholder="Ciudad de México" id="city" required autocomplete="address-level2">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Estado *</label>
+            <select class="form-input form-select" id="state">
+              <option value="">Selecciona...</option>
+              <option>Ciudad de México</option>
+              <option>Jalisco</option>
+              <option>Nuevo León</option>
+              <option>Estado de México</option>
+              <option>Puebla</option>
+              <option>Querétaro</option>
+              <option>Guanajuato</option>
+              <option>Otro</option>
+            </select>
+          </div>
+        </div>
+        <label style="display:flex;align-items:center;gap:0.6rem;font-size:0.85rem;cursor:pointer;margin-top:0.5rem;color:var(--muted);">
+          <input type="checkbox" style="accent-color:var(--rose);"> Guardar dirección para futuras compras
+        </label>
+      </div>
+
+      <!-- Método de envío -->
+      <div class="checkout-section">
+        <h3><i class="fa-solid fa-truck" style="color:var(--gold);margin-right:0.5rem;"></i>Método de envío</h3>
+        <div style="display:flex;flex-direction:column;gap:0.8rem;">
+          <label style="display:flex;align-items:center;justify-content:space-between;padding:1rem;border:2px solid var(--rose);border-radius:var(--radius-sm);background:var(--blush);cursor:pointer;">
+            <div style="display:flex;align-items:center;gap:0.8rem;">
+              <input type="radio" name="shipping" value="express" checked style="accent-color:var(--rose);">
+              <div>
+                <div style="font-size:0.88rem;font-weight:600;color:var(--charcoal);">Express 2-3 días 🚀</div>
+                <div style="font-size:0.75rem;color:var(--muted);">Fedex / DHL · Con seguimiento</div>
+              </div>
+            </div>
+            <span style="font-weight:700;color:var(--rose-dark);">Gratis</span>
+          </label>
+          <label style="display:flex;align-items:center;justify-content:space-between;padding:1rem;border:1.5px solid var(--beige);border-radius:var(--radius-sm);background:white;cursor:pointer;">
+            <div style="display:flex;align-items:center;gap:0.8rem;">
+              <input type="radio" name="shipping" value="overnight" style="accent-color:var(--rose);">
+              <div>
+                <div style="font-size:0.88rem;font-weight:600;color:var(--charcoal);">Overnight 24h ⚡</div>
+                <div style="font-size:0.75rem;color:var(--muted);">Entrega al día siguiente</div>
+              </div>
+            </div>
+            <span style="font-weight:700;color:var(--charcoal);">$199 MXN</span>
+          </label>
+          <label style="display:flex;align-items:center;justify-content:space-between;padding:1rem;border:1.5px solid var(--beige);border-radius:var(--radius-sm);background:white;cursor:pointer;">
+            <div style="display:flex;align-items:center;gap:0.8rem;">
+              <input type="radio" name="shipping" value="standard" style="accent-color:var(--rose);">
+              <div>
+                <div style="font-size:0.88rem;font-weight:600;color:var(--charcoal);">Estándar 5-7 días 📦</div>
+                <div style="font-size:0.75rem;color:var(--muted);">Correos de México</div>
+              </div>
+            </div>
+            <span style="font-weight:700;color:var(--charcoal);">Gratis</span>
+          </label>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-full" onclick="goToPayment()" style="font-size:1rem;padding:1.1rem;">
+        Continuar al pago <i class="fa-solid fa-arrow-right"></i>
+      </button>
+      <a href="catalogo.html" class="btn btn-outline btn-full" style="margin-top:0.8rem;">
+        <i class="fa-solid fa-arrow-left"></i> Seguir comprando
+      </a>
+    </div>
+
+    <!-- Right: Order summary -->
+    <div class="order-summary-card">
+      <div class="order-summary-header">
+        <h3>Resumen de orden</h3>
+        <p style="font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:0.2rem;" id="summaryCount"></p>
+      </div>
+      <div class="order-items" id="orderItems"></div>
+      <div class="order-totals">
+        <div class="order-line"><span class="lbl">Subtotal</span><span class="val" id="summarySubtotal"></span></div>
+        <div class="order-line"><span class="lbl">Envío</span><span class="val" style="color:var(--gold);">Gratis 🎀</span></div>
+        <div class="order-line"><span class="lbl">Descuento</span><span class="val" style="color:var(--rose);" id="discountLine">—</span></div>
+        <div class="order-line total"><span class="lbl">Total</span><span class="val" id="summaryTotal"></span></div>
+      </div>
+      <div class="order-cta">
+        <div class="promo-input-wrap">
+          <input type="text" id="promoInputCheckout" placeholder="Código de descuento" style="text-transform:uppercase">
+          <button onclick="applyPromo()">Aplicar</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;color:var(--muted);">
+          <i class="fa-solid fa-lock" style="color:var(--gold);"></i>
+          Pago 100% seguro · Certificado SSL · Protocolo SET
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast"></div>
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  function renderSummary() {
+    const items = DB.cart;
+    const container = document.getElementById('orderItems');
+    container.innerHTML = items.map(item => {
+      const p = DB.query.getById(item.productId);
+      if (!p) return '';
+      return `
+      <div class="order-item">
+        <div style="position:relative;">
+          <img src="${p.images[0]}" alt="${p.name}" class="order-item-img">
+          <span style="position:absolute;top:-6px;right:-6px;background:var(--rose);color:white;width:18px;height:18px;border-radius:50%;font-size:0.65rem;display:flex;align-items:center;justify-content:center;font-weight:700;">${item.qty}</span>
+        </div>
+        <div>
+          <div class="order-item-name">${p.name}</div>
+          <div class="order-item-sub">Talla: ${item.size}</div>
+        </div>
+        <div class="order-item-price">$${(p.price * item.qty).toLocaleString('es-MX')}</div>
+      </div>`;
+    }).join('');
+
+    const total = DB.query.getCartTotal();
+    const count = DB.query.getCartCount();
+    document.getElementById('summaryCount').textContent = `${count} pieza${count !== 1 ? 's' : ''}`;
+    document.getElementById('summarySubtotal').textContent = '$' + total.toLocaleString('es-MX') + ' MXN';
+    document.getElementById('summaryTotal').textContent = '$' + total.toLocaleString('es-MX') + ' MXN';
+  }
+
+  function applyPromo() {
+    const code = document.getElementById('promoInputCheckout').value.trim().toUpperCase();
+    if (code === 'QUEBIATH20') {
+      const total = DB.query.getCartTotal();
+      const discount = Math.round(total * 0.20);
+      const newTotal = total - discount;
+      document.getElementById('discountLine').textContent = '−$' + discount.toLocaleString('es-MX');
+      document.getElementById('summaryTotal').textContent = '$' + newTotal.toLocaleString('es-MX') + ' MXN';
+      showToast('🎀 ¡Descuento QUEBIATH20 aplicado! −20%');
+    } else {
+      showToast('❌ Código no válido. Prueba QUEBIATH20');
+    }
+  }
+
+  function goToPayment() {
+    const fname = document.getElementById('fname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const street = document.getElementById('street').value.trim();
+
+    if (!fname || !email || !street) {
+      showToast('⚠️ Por favor completa los campos obligatorios (*)');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showToast('⚠️ Email no válido');
+      return;
+    }
+    window.location.href = 'pago.html';
+  }
+
+  renderSummary();
+</script>
+</body>
+</html>

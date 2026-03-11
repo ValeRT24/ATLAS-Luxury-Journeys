@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pago Seguro — QUEBIATH Boutique</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .payment-layout { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; display: grid; grid-template-columns: 1fr 340px; gap: 2.5rem; align-items: start; }
+    .payment-left { }
+    .payment-right { position: sticky; top: 90px; }
+    @media(max-width:760px){ .payment-layout{ grid-template-columns:1fr; } .payment-right{ position:static; } }
+    .otp-modal { display: none; position: fixed; inset: 0; background: rgba(58,47,47,0.6); z-index: 2000; align-items: center; justify-content: center; padding: 1rem; backdrop-filter: blur(8px); }
+    .otp-modal.show { display: flex; }
+    .otp-box { background: white; border-radius: var(--radius); padding: 2.5rem; max-width: 380px; width: 100%; text-align: center; box-shadow: 0 20px 60px var(--shadow-deep); }
+    .otp-box h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .otp-box p { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.5rem; }
+    .otp-inputs { display: flex; gap: 0.6rem; justify-content: center; margin-bottom: 1.5rem; }
+    .otp-input { width: 52px; height: 60px; border: 2.5px solid var(--beige); border-radius: 10px; font-size: 1.5rem; text-align: center; font-weight: 700; font-family: 'Playfair Display', serif; color: var(--charcoal); outline: none; transition: border-color 0.25s; }
+    .otp-input:focus { border-color: var(--rose); }
+    .otp-resend { font-size: 0.78rem; color: var(--muted); }
+    .otp-resend button { color: var(--rose-dark); font-weight: 600; text-decoration: underline; }
+    .bank-logos { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1rem; }
+    .bank-logo { background: var(--cream); border: 1px solid var(--beige); border-radius: 8px; padding: 0.4rem 0.8rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <a href="../index.html" class="nav-logo">
+    <span class="brand">QUEBIATH</span>
+    <span class="tagline">Boutique · Moda Femenina</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Inicio</a></li>
+    <li><a href="catalogo.html">Catálogo</a></li>
+    <li><a href="nosotras.html">Nosotras</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <div class="nav-icons">
+    <button class="nav-icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <button class="nav-icon-btn"><i class="fa-regular fa-heart"></i></button>
+    <button class="nav-icon-btn" id="cartBtn">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <span class="cart-count" id="cartCount">3</span>
+    </button>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html">Inicio</a>
+  <a href="catalogo.html">Catálogo</a>
+  <a href="nosotras.html">Nosotras</a>
+  <a href="contacto.html">Contacto</a>
+</div>
+
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<aside class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Mi Bolsa</h3>
+    <button class="cart-close" onclick="closeCart()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-subtotal"><span class="label">Total</span><span class="value" id="cartTotalDisplay">$4,870 MXN</span></div>
+    <a href="checkout.html" class="btn btn-primary btn-full" style="margin-top:1rem;">Finalizar Compra</a>
+  </div>
+</aside>
+
+<div style="margin-top:72px;">
+  <div class="page-hero">
+    <div class="breadcrumb">
+      <a href="../index.html">Inicio</a><span>/</span>
+      <a href="checkout.html">Checkout</a><span>/</span>
+      <span>Pago Seguro</span>
+    </div>
+    <h1>Pago <span style="color:var(--rose);font-style:italic;">Seguro</span></h1>
+    <p style="max-width:480px;margin:0.5rem auto 0;font-size:0.88rem;color:var(--muted);">Tu información está protegida con certificado SSL 256-bit y protocolo SET.</p>
+  </div>
+</div>
+
+<section style="padding:2rem;">
+  <!-- Steps -->
+  <div class="steps-bar">
+    <div class="step-item completed"><div class="step-circle"><i class="fa-solid fa-check"></i></div><span class="step-label">Bolsa</span></div>
+    <div class="step-item completed"><div class="step-circle"><i class="fa-solid fa-check"></i></div><span class="step-label">Datos</span></div>
+    <div class="step-item active"><div class="step-circle">3</div><span class="step-label">Pago</span></div>
+    <div class="step-item pending"><div class="step-circle">4</div><span class="step-label">Confirmación</span></div>
+  </div>
+</section>
+
+<div class="payment-layout">
+  <!-- Left: Payment form -->
+  <div class="payment-left">
+
+    <!-- Tarjeta visual 3D -->
+    <div class="payment-card-visual">
+      <div class="card-3d" id="card3d">
+        <div class="card-front">
+          <div class="card-chip"></div>
+          <div class="card-number" id="cardDisplayNumber">•••• •••• •••• ••••</div>
+          <div class="card-meta">
+            <div>
+              <div class="card-label">Nombre en la tarjeta</div>
+              <div class="card-value" id="cardDisplayName">TU NOMBRE</div>
+            </div>
+            <div>
+              <div class="card-label">Vence</div>
+              <div class="card-value" id="cardDisplayExpiry">MM/AA</div>
+            </div>
+            <div class="card-logo">Q</div>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="card-back-stripe"></div>
+          <div style="padding:0 0.5rem;">
+            <div class="card-back-cvv">
+              <div class="cvv-label">CVV</div>
+              <div class="cvv-value" id="cardDisplayCvv">•••</div>
+            </div>
+            <div style="margin-top:1rem;font-size:0.7rem;opacity:0.6;line-height:1.5;">
+              Este sitio utiliza protocolo SET (Secure Electronic Transaction) y certificado SSL 256-bit para proteger tu información de pago.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Método de pago -->
+    <div style="margin-bottom:1.5rem;">
+      <div style="font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:0.8rem;">Método de pago</div>
+      <div class="payment-methods">
+        <button class="payment-method-btn active" onclick="setPayMethod('credit',this)">
+          <i class="fa-solid fa-credit-card"></i>
+          <span>Crédito</span>
+        </button>
+        <button class="payment-method-btn" onclick="setPayMethod('debit',this)">
+          <i class="fa-solid fa-money-check"></i>
+          <span>Débito</span>
+        </button>
+        <button class="payment-method-btn" onclick="setPayMethod('paypal',this)">
+          <i class="fa-brands fa-paypal"></i>
+          <span>PayPal</span>
+        </button>
+        <button class="payment-method-btn" onclick="setPayMethod('oxxo',this)">
+          <i class="fa-solid fa-store"></i>
+          <span>OXXO Pay</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Form de tarjeta -->
+    <div class="card-form" id="cardFormSection">
+      <h3><i class="fa-solid fa-lock" style="color:var(--gold);margin-right:0.5rem;font-size:1rem;"></i>Datos de tarjeta</h3>
+      <div class="form-group" style="margin-bottom:1.2rem;">
+        <label class="form-label">Nombre del titular *</label>
+        <input type="text" class="form-input" id="cardName" placeholder="Como aparece en tu tarjeta" oninput="updateCardName(this.value)" autocomplete="cc-name" maxlength="26" style="text-transform:uppercase">
+      </div>
+      <div class="form-group" style="margin-bottom:1.2rem;">
+        <label class="form-label">Número de tarjeta *</label>
+        <div style="position:relative;">
+          <input type="text" class="form-input" id="cardNumber" placeholder="0000 0000 0000 0000" oninput="formatCardNum(this)" autocomplete="cc-number" maxlength="19" style="padding-right:3.5rem;">
+          <span id="cardBrandIcon" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:1.4rem;color:var(--muted);"></span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Fecha de vencimiento *</label>
+          <input type="text" class="form-input" id="cardExpiry" placeholder="MM / AA" oninput="formatExpiry(this)" autocomplete="cc-exp" maxlength="7">
+        </div>
+        <div class="form-group">
+          <label class="form-label">CVV *</label>
+          <div class="cvv-input-wrap">
+            <input type="password" class="form-input" id="cardCvv" placeholder="•••" oninput="updateCvv(this.value)" onfocus="flipCard(true)" onblur="flipCard(false)" autocomplete="cc-csc" maxlength="4">
+            <span class="cvv-eye" onclick="toggleCvvVisibility()"><i class="fa-regular fa-eye" id="cvvEyeIcon"></i></span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" style="margin-top:0.5rem;margin-bottom:1.2rem;">
+        <label style="display:flex;align-items:center;gap:0.7rem;font-size:0.85rem;cursor:pointer;color:var(--muted);">
+          <input type="checkbox" id="saveCard" style="accent-color:var(--rose);">
+          Guardar tarjeta para próximas compras (encriptada)
+        </label>
+      </div>
+
+      <!-- Cuotas (solo crédito) -->
+      <div id="installmentsSection" style="margin-bottom:1.2rem;">
+        <label class="form-label">Meses sin intereses</label>
+        <select class="form-input form-select" id="installments">
+          <option value="1">Pago único — $<span id="installTotal"></span></option>
+          <option value="3">3 MSI — $<span id="inst3"></span> / mes</option>
+          <option value="6">6 MSI — $<span id="inst6"></span> / mes</option>
+          <option value="12">12 MSI — $<span id="inst12"></span> / mes</option>
+        </select>
+      </div>
+
+      <!-- SSL badge -->
+      <div class="ssl-badge">
+        <i class="fa-solid fa-shield-halved"></i>
+        <div>
+          <p style="font-weight:600;color:var(--charcoal);margin-bottom:0.1rem;">Conexión SSL 256-bit activa</p>
+          <p>Tus datos de pago están cifrados con TLS 1.3. Nunca almacenamos tu CVV.</p>
+        </div>
+      </div>
+
+      <!-- SET badge -->
+      <div class="set-badge">
+        <h4><i class="fa-solid fa-certificate" style="margin-right:0.5rem;color:var(--gold-light);"></i>Protocolo SET — Secure Electronic Transaction</h4>
+        <p>Integración con Visa y Mastercard para autenticación de transacciones. Tu banco verifica cada compra en tiempo real.</p>
+        <div class="badges-row">
+          <span class="mini-badge">🔒 SSL/TLS 1.3</span>
+          <span class="mini-badge">✅ SET Protocol</span>
+          <span class="mini-badge">🏦 3D Secure</span>
+          <span class="mini-badge">Visa Verified</span>
+          <span class="mini-badge">MC SecureCode</span>
+          <span class="mini-badge">PCI DSS</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-full btn-pulse" style="margin-top:1.5rem;font-size:1rem;padding:1.1rem;" onclick="submitPayment()">
+        <i class="fa-solid fa-lock"></i> Pagar ahora — <span id="payNowTotal">$4,870 MXN</span>
+      </button>
+      <p style="text-align:center;font-size:0.72rem;color:var(--muted);margin-top:0.8rem;">
+        Al pagar aceptas nuestros <a href="#" style="color:var(--gold);">Términos y Condiciones</a> y <a href="#" style="color:var(--gold);">Política de Privacidad</a>.
+      </p>
+    </div>
+
+    <!-- PayPal section -->
+    <div id="paypalSection" style="display:none;" class="card-form">
+      <h3><i class="fa-brands fa-paypal" style="color:#003087;margin-right:0.5rem;"></i>Pagar con PayPal</h3>
+      <p style="font-size:0.9rem;margin-bottom:1.5rem;">Serás redirigida de forma segura a PayPal para completar tu pago.</p>
+      <button class="btn btn-full" style="background:#003087;color:white;padding:1.1rem;font-size:1rem;" onclick="showToast('🔒 Redirigiendo a PayPal...')">
+        <i class="fa-brands fa-paypal"></i> Continuar con PayPal
+      </button>
+    </div>
+
+    <!-- OXXO section -->
+    <div id="oxxoSection" style="display:none;" class="card-form">
+      <h3><i class="fa-solid fa-store" style="color:var(--gold);margin-right:0.5rem;"></i>OXXO Pay</h3>
+      <p style="font-size:0.9rem;margin-bottom:1rem;">Genera tu ficha de pago y paga en cualquier OXXO de México.</p>
+      <div style="background:var(--cream);border:2px dashed var(--beige-dark);border-radius:12px;padding:1.5rem;text-align:center;margin-bottom:1.2rem;">
+        <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;">Referencia de pago</div>
+        <div style="font-family:'Courier New',monospace;font-size:1.8rem;font-weight:700;letter-spacing:4px;color:var(--charcoal);">QBT-2026-8847</div>
+        <div style="font-size:0.75rem;color:var(--muted);margin-top:0.4rem;">Válida por 48 horas</div>
+      </div>
+      <button class="btn btn-full btn-gold" onclick="showToast('📄 Ficha OXXO generada. ¡Guárdala!')">Descargar ficha PDF</button>
+    </div>
+
+  </div>
+
+  <!-- Right: Order summary -->
+  <div class="payment-right">
+    <div class="order-summary-card">
+      <div class="order-summary-header">
+        <h3>Tu orden</h3>
+      </div>
+      <div class="order-items" id="payOrderItems"></div>
+      <div class="order-totals">
+        <div class="order-line"><span class="lbl">Subtotal</span><span class="val" id="paySummarySubtotal"></span></div>
+        <div class="order-line"><span class="lbl">Envío</span><span class="val" style="color:var(--gold);">Gratis 🎀</span></div>
+        <div class="order-line total"><span class="lbl">Total</span><span class="val" id="paySummaryTotal"></span></div>
+      </div>
+      <div style="padding:1rem 1.5rem;font-size:0.75rem;color:var(--muted);border-top:1px solid var(--beige);">
+        <div style="display:flex;gap:0.5rem;align-items:flex-start;margin-bottom:0.6rem;">
+          <i class="fa-solid fa-lock" style="color:var(--gold);margin-top:2px;"></i>
+          <span>Transacción protegida con SSL 256-bit y protocolo SET de Visa/Mastercard.</span>
+        </div>
+        <div style="display:flex;gap:0.5rem;align-items:flex-start;">
+          <i class="fa-solid fa-rotate-left" style="color:var(--gold);margin-top:2px;"></i>
+          <span>Devolución gratuita en 30 días. Sin preguntas.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjetas aceptadas -->
+    <div style="background:white;border-radius:var(--radius);padding:1.2rem;margin-top:1rem;box-shadow:0 2px 16px var(--shadow);">
+      <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:0.8rem;">Tarjetas aceptadas</div>
+      <div class="bank-logos">
+        <span class="bank-logo" style="background:#1A1F71;color:white;">VISA</span>
+        <span class="bank-logo" style="background:#EB001B;color:white;">MC</span>
+        <span class="bank-logo" style="background:#007BB5;color:white;">AMEX</span>
+        <span class="bank-logo">BBVA</span>
+        <span class="bank-logo">Banamex</span>
+        <span class="bank-logo">Santander</span>
+        <span class="bank-logo">HSBC</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OTP / 3D Secure Modal -->
+<div class="otp-modal" id="otpModal">
+  <div class="otp-box">
+    <div style="font-size:2.5rem;margin-bottom:0.8rem;">🔐</div>
+    <h3>Verificación 3D Secure</h3>
+    <p>Tu banco envió un código de verificación a tu teléfono <strong>•••••••••71</strong>. Ingresa el código para confirmar tu pago.</p>
+    <div class="otp-inputs" id="otpInputs">
+      <input type="text" class="otp-input" maxlength="1" oninput="otpNext(this,0)">
+      <input type="text" class="otp-input" maxlength="1" oninput="otpNext(this,1)">
+      <input type="text" class="otp-input" maxlength="1" oninput="otpNext(this,2)">
+      <input type="text" class="otp-input" maxlength="1" oninput="otpNext(this,3)">
+      <input type="text" class="otp-input" maxlength="1" oninput="otpNext(this,4)">
+      <input type="text" class="otp-input" maxlength="1" oninput="otpNext(this,5)">
+    </div>
+    <button class="btn btn-primary btn-full" onclick="confirmOtp()" style="margin-bottom:1rem;">Verificar y pagar</button>
+    <div class="otp-resend">¿No recibiste el código? <button onclick="showToast('📱 Reenvío en proceso...')">Reenviar</button></div>
+    <p style="font-size:0.7rem;margin-top:1rem;color:var(--muted);">🔒 Proceso 3D Secure — Protocolo SET activo</p>
+  </div>
+</div>
+
+<!-- Success overlay -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-icon">🎀</div>
+  <h2>¡Pago exitoso!</h2>
+  <p>Gracias por tu compra en QUEBIATH Boutique. Tu pedido está siendo preparado con todo el amor del mundo.</p>
+  <div class="order-number">Número de orden: <strong>#QBT-2026-<span id="orderNum"></span></strong></div>
+  <p style="font-size:0.82rem;margin-bottom:1.5rem;">Recibirás un email de confirmación con los detalles de tu envío en breve.</p>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
+    <a href="../index.html" class="btn btn-primary">Seguir comprando</a>
+    <a href="catalogo.html" class="btn btn-outline">Ver catálogo</a>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  // ---- Init totals ----
+  function initPayment() {
+    if (!window.DB) return;
+    const total = DB.query.getCartTotal();
+    const totalFmt = '$' + total.toLocaleString('es-MX') + ' MXN';
+
+    // Fill order summary
+    const items = DB.cart;
+    document.getElementById('payOrderItems').innerHTML = items.map(item => {
+      const p = DB.query.getById(item.productId);
+      if (!p) return '';
+      return `<div class="order-item">
+        <div style="position:relative;">
+          <img src="${p.images[0]}" alt="${p.name}" class="order-item-img">
+          <span style="position:absolute;top:-6px;right:-6px;background:var(--rose);color:white;width:18px;height:18px;border-radius:50%;font-size:0.65rem;display:flex;align-items:center;justify-content:center;font-weight:700;">${item.qty}</span>
+        </div>
+        <div><div class="order-item-name">${p.name}</div><div class="order-item-sub">Talla: ${item.size}</div></div>
+        <div class="order-item-price">$${(p.price*item.qty).toLocaleString('es-MX')}</div>
+      </div>`;
+    }).join('');
+
+    document.getElementById('paySummarySubtotal').textContent = totalFmt;
+    document.getElementById('paySummaryTotal').textContent = totalFmt;
+    document.getElementById('payNowTotal').textContent = totalFmt;
+
+    // Installments
+    document.getElementById('installTotal').textContent = total.toLocaleString('es-MX');
+    document.getElementById('inst3').textContent = Math.round(total/3).toLocaleString('es-MX');
+    document.getElementById('inst6').textContent = Math.round(total/6).toLocaleString('es-MX');
+    document.getElementById('inst12').textContent = Math.round(total/12).toLocaleString('es-MX');
+  }
+
+  // ---- Card display updates ----
+  function updateCardName(val) {
+    document.getElementById('cardDisplayName').textContent = (val.toUpperCase() || 'TU NOMBRE').slice(0,22);
+  }
+  function formatCardNum(input) {
+    let val = input.value.replace(/\D/g,'').slice(0,16);
+    val = val.replace(/(.{4})/g,'$1 ').trim();
+    input.value = val;
+    const display = val || '•••• •••• •••• ••••';
+    document.getElementById('cardDisplayNumber').textContent = display.length < 19 ? display.padEnd(19,'•').replace(/•/g,'•') : display;
+    // Detectar tipo de tarjeta
+    const num = val.replace(/\s/g,'');
+    const icon = document.getElementById('cardBrandIcon');
+    if (num.startsWith('4')) { icon.innerHTML='<i class="fa-brands fa-cc-visa" style="color:#1A1F71;"></i>'; }
+    else if (/^5[1-5]/.test(num) || /^2[2-7]/.test(num)) { icon.innerHTML='<i class="fa-brands fa-cc-mastercard" style="color:#EB001B;"></i>'; }
+    else if (num.startsWith('3')) { icon.innerHTML='<i class="fa-brands fa-cc-amex" style="color:#007BB5;"></i>'; }
+    else { icon.innerHTML='<i class="fa-solid fa-credit-card" style="color:var(--muted);"></i>'; }
+  }
+  function formatExpiry(input) {
+    let val = input.value.replace(/\D/g,'').slice(0,4);
+    if (val.length >= 2) val = val.slice(0,2) + ' / ' + val.slice(2);
+    input.value = val;
+    document.getElementById('cardDisplayExpiry').textContent = val || 'MM/AA';
+  }
+  function updateCvv(val) {
+    document.getElementById('cardDisplayCvv').textContent = val ? '•'.repeat(val.length) : '•••';
+  }
+  function flipCard(flipped) {
+    document.getElementById('card3d').classList.toggle('flipped', flipped);
+  }
+  function toggleCvvVisibility() {
+    const input = document.getElementById('cardCvv');
+    const icon = document.getElementById('cvvEyeIcon');
+    if (input.type === 'password') { input.type = 'text'; icon.className = 'fa-regular fa-eye-slash'; }
+    else { input.type = 'password'; icon.className = 'fa-regular fa-eye'; }
+  }
+
+  // ---- Payment method toggle ----
+  function setPayMethod(method, btn) {
+    document.querySelectorAll('.payment-method-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('cardFormSection').style.display = 'none';
+    document.getElementById('paypalSection').style.display = 'none';
+    document.getElementById('oxxoSection').style.display = 'none';
+    document.getElementById('installmentsSection').style.display = 'none';
+    if (method === 'credit' || method === 'debit') {
+      document.getElementById('cardFormSection').style.display = 'block';
+      if (method === 'credit') document.getElementById('installmentsSection').style.display = 'block';
+    } else if (method === 'paypal') {
+      document.getElementById('paypalSection').style.display = 'block';
+    } else if (method === 'oxxo') {
+      document.getElementById('oxxoSection').style.display = 'block';
+    }
+  }
+
+  // ---- Validación & enviar pago ----
+  function submitPayment() {
+    const name = document.getElementById('cardName').value.trim();
+    const number = document.getElementById('cardNumber').value.replace(/\s/g,'');
+    const expiry = document.getElementById('cardExpiry').value.replace(/\s/g,'');
+    const cvv = document.getElementById('cardCvv').value.trim();
+
+    if (!name) { showToast('⚠️ Ingresa el nombre del titular'); return; }
+    if (number.length < 13) { showToast('⚠️ Número de tarjeta incompleto'); return; }
+    if (expiry.length < 5) { showToast('⚠️ Fecha de vencimiento incompleta'); return; }
+    if (cvv.length < 3) { showToast('⚠️ CVV requerido'); return; }
+
+    // Validar mes/año
+    const parts = document.getElementById('cardExpiry').value.replace(/\s/g,'').split('/');
+    const month = parseInt(parts[0]);
+    const year = parseInt('20' + parts[1]);
+    const now = new Date();
+    if (month < 1 || month > 12 || year < now.getFullYear() || (year === now.getFullYear() && month < now.getMonth() + 1)) {
+      showToast('⚠️ Tarjeta vencida o fecha inválida');
+      return;
+    }
+
+    // Simular 3D Secure
+    document.getElementById('otpModal').classList.add('show');
+    document.getElementById('otpInputs').querySelectorAll('.otp-input')[0].focus();
+  }
+
+  // ---- OTP ----
+  function otpNext(input, index) {
+    input.value = input.value.replace(/\D/g,'');
+    if (input.value.length === 1 && index < 5) {
+      document.querySelectorAll('.otp-input')[index + 1]?.focus();
+    }
+  }
+  function confirmOtp() {
+    const inputs = document.querySelectorAll('.otp-input');
+    const code = Array.from(inputs).map(i => i.value).join('');
+    if (code.length < 6) { showToast('⚠️ Ingresa los 6 dígitos'); return; }
+
+    // Simulate processing
+    document.getElementById('otpModal').classList.remove('show');
+    showToast('🔄 Procesando pago...');
+    setTimeout(() => {
+      const orderNum = Math.floor(Math.random() * 9000 + 1000);
+      document.getElementById('orderNum').textContent = orderNum;
+      document.getElementById('successOverlay').classList.add('show');
+      // Vaciar carrito
+      DB.cart.length = 0;
+      updateCartFooter();
+    }, 2000);
+  }
+
+  // ---- OTP keyboard nav ----
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Backspace') {
+      const inputs = document.querySelectorAll('.otp-input');
+      const focused = document.activeElement;
+      const idx = Array.from(inputs).indexOf(focused);
+      if (idx > 0 && !focused.value) { inputs[idx-1].focus(); inputs[idx-1].value = ''; }
+    }
+  });
+
+  initPayment();
+</script>
+</body>
+</html>

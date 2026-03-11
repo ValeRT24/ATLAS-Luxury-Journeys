@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto — QUEBIATH Boutique</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .contact-layout { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
+    .contact-info-card { background: white; border-radius: var(--radius); padding: 2.5rem; box-shadow: 0 2px 16px var(--shadow); }
+    .contact-item { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 2rem; }
+    .contact-icon { width: 46px; height: 46px; background: var(--blush); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--rose-dark); font-size: 1rem; flex-shrink: 0; }
+    .contact-item-text .label { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 0.2rem; }
+    .contact-item-text .value { font-size: 0.9rem; color: var(--charcoal); font-weight: 500; }
+    .contact-item-text .sub { font-size: 0.78rem; color: var(--muted); }
+    .contact-form-card { background: white; border-radius: var(--radius); padding: 2.5rem; box-shadow: 0 2px 16px var(--shadow); }
+    .input-icon-wrap { position: relative; }
+    .input-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 0.88rem; }
+    .input-icon-wrap .form-input { padding-left: 2.4rem; }
+    .faq-item { border-bottom: 1px solid var(--beige); }
+    .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; cursor: pointer; font-size: 0.9rem; font-weight: 500; color: var(--charcoal); }
+    .faq-q .icon { color: var(--rose); transition: transform 0.3s; }
+    .faq-a { display: none; font-size: 0.85rem; color: var(--muted); padding-bottom: 1rem; line-height: 1.7; }
+    .faq-item.open .faq-q .icon { transform: rotate(45deg); }
+    .faq-item.open .faq-a { display: block; }
+    @media(max-width:800px){ .contact-layout{ grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <a href="../index.html" class="nav-logo">
+    <span class="brand">QUEBIATH</span>
+    <span class="tagline">Boutique · Moda Femenina</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Inicio</a></li>
+    <li><a href="catalogo.html">Catálogo</a></li>
+    <li><a href="nosotras.html">Nosotras</a></li>
+    <li><a href="contacto.html" class="active">Contacto</a></li>
+  </ul>
+  <div class="nav-icons">
+    <button class="nav-icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <button class="nav-icon-btn"><i class="fa-regular fa-heart"></i></button>
+    <button class="nav-icon-btn" id="cartBtn">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <span class="cart-count" id="cartCount">3</span>
+    </button>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html">Inicio</a>
+  <a href="catalogo.html">Catálogo</a>
+  <a href="nosotras.html">Nosotras</a>
+  <a href="contacto.html">Contacto</a>
+</div>
+
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<aside class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header"><h3>Mi Bolsa</h3><button class="cart-close" onclick="closeCart()"><i class="fa-solid fa-xmark"></i></button></div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-subtotal"><span class="label">Total</span><span class="value">$4,870 MXN</span></div>
+    <a href="checkout.html" class="btn btn-primary btn-full" style="margin-top:1rem;">Finalizar Compra</a>
+  </div>
+</aside>
+
+<div style="margin-top:72px;">
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="../index.html">Inicio</a><span>/</span><span>Contacto</span></div>
+    <h1>Escríbenos con <span style="color:var(--rose);font-style:italic;">amor</span></h1>
+    <p style="max-width:440px;margin:0.5rem auto 0;font-size:0.9rem;color:var(--muted);">Respondemos en menos de 24 horas. Prometido. 🎀</p>
+  </div>
+</div>
+
+<div class="contact-layout">
+  <!-- Info -->
+  <div>
+    <div class="contact-info-card">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:2rem;color:var(--charcoal);">Información de contacto</h3>
+      <div class="contact-item">
+        <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+        <div class="contact-item-text">
+          <div class="label">Email</div>
+          <div class="value">hola@quebiath.com</div>
+          <div class="sub">Respuesta en menos de 24h</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><i class="fa-brands fa-whatsapp"></i></div>
+        <div class="contact-item-text">
+          <div class="label">WhatsApp</div>
+          <div class="value">+52 (55) 1234 5678</div>
+          <div class="sub">Lun–Sáb · 10am–8pm</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><i class="fa-brands fa-instagram"></i></div>
+        <div class="contact-item-text">
+          <div class="label">Instagram</div>
+          <div class="value">@quebiath.boutique</div>
+          <div class="sub">DM abiertos</div>
+        </div>
+      </div>
+      <div class="contact-item" style="margin-bottom:0;">
+        <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div class="contact-item-text">
+          <div class="label">Showroom</div>
+          <div class="value">Polanco, CDMX</div>
+          <div class="sub">Citas previas únicamente</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Socials -->
+    <div style="background:var(--charcoal);border-radius:var(--radius);padding:2rem;margin-top:1.5rem;text-align:center;">
+      <p style="font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);margin-bottom:0.8rem;">✦ Síguenos</p>
+      <div style="display:flex;gap:1rem;justify-content:center;">
+        <a href="#" class="social-btn" style="width:50px;height:50px;font-size:1.2rem;"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-btn" style="width:50px;height:50px;font-size:1.2rem;"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#" class="social-btn" style="width:50px;height:50px;font-size:1.2rem;"><i class="fa-brands fa-pinterest"></i></a>
+        <a href="#" class="social-btn" style="width:50px;height:50px;font-size:1.2rem;"><i class="fa-brands fa-facebook-f"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form -->
+  <div class="contact-form-card">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:0.5rem;">Envíanos un mensaje</h3>
+    <p style="font-size:0.85rem;color:var(--muted);margin-bottom:2rem;">¿Tienes una duda sobre tu pedido, una pieza en específico o simplemente quieres saludarnos? ¡Escríbenos!</p>
+    <form id="contactForm" onsubmit="submitContact(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Nombre *</label>
+          <div class="input-icon-wrap">
+            <i class="fa-regular fa-user input-icon"></i>
+            <input type="text" class="form-input" placeholder="Tu nombre" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email *</label>
+          <div class="input-icon-wrap">
+            <i class="fa-regular fa-envelope input-icon"></i>
+            <input type="email" class="form-input" placeholder="tu@email.com" required autocomplete="email">
+          </div>
+        </div>
+        <div class="form-group full" style="grid-column:span 2;">
+          <label class="form-label">Asunto</label>
+          <select class="form-input form-select">
+            <option>Sobre mi pedido</option>
+            <option>Una pieza del catálogo</option>
+            <option>Devolución o cambio</option>
+            <option>Colaboración</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group full" style="grid-column:span 2;">
+          <label class="form-label">Mensaje *</label>
+          <textarea class="form-input" rows="5" placeholder="Cuéntanos cómo podemos ayudarte..." required style="resize:vertical;"></textarea>
+        </div>
+      </div>
+      <label style="display:flex;align-items:flex-start;gap:0.6rem;font-size:0.82rem;color:var(--muted);cursor:pointer;margin-bottom:1.5rem;">
+        <input type="checkbox" required style="accent-color:var(--rose);margin-top:2px;flex-shrink:0;">
+        Acepto la <a href="#" style="color:var(--gold);">política de privacidad</a> y el uso de mis datos para responderte.
+      </label>
+      <button type="submit" class="btn btn-primary btn-full">
+        Enviar mensaje <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section style="padding:5rem 2rem;background:white;">
+  <div class="section-header">
+    <p class="section-eyebrow">✦ Preguntas frecuentes</p>
+    <h2 class="section-title">Respuestas <span>rápidas</span></h2>
+  </div>
+  <div style="max-width:700px;margin:0 auto;">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">¿Cuánto tiempo tarda el envío? <span class="icon"><i class="fa-solid fa-plus"></i></span></div>
+      <div class="faq-a">Los envíos express tardan 2-3 días hábiles con Fedex o DHL. El envío overnight llega al día siguiente si realizas tu pedido antes de las 2pm. El envío estándar tarda 5-7 días hábiles.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">¿Cómo hago una devolución? <span class="icon"><i class="fa-solid fa-plus"></i></span></div>
+      <div class="faq-a">Tienes 30 días a partir de la fecha de entrega para devolver cualquier pieza en condición original (sin usar, con etiquetas). Escríbenos y te enviamos la guía de devolución prepagada. ¡Sin costo adicional!</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">¿Es seguro pagar en QUEBIATH? <span class="icon"><i class="fa-solid fa-plus"></i></span></div>
+      <div class="faq-a">¡Totalmente! Usamos certificado SSL 256-bit, protocolo SET de Visa/Mastercard y autenticación 3D Secure. Nunca almacenamos tu CVV. Tu información está protegida en todo momento.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">¿Tienen guía de tallas? <span class="icon"><i class="fa-solid fa-plus"></i></span></div>
+      <div class="faq-a">Sí. En cada producto encontrarás el botón "Guía de tallas" con medidas específicas de esa prenda. Si tienes dudas, escríbenos y te asesoramos personalmente.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">¿Puedo cambiar mi pedido ya realizado? <span class="icon"><i class="fa-solid fa-plus"></i></span></div>
+      <div class="faq-a">Puedes modificar tu pedido dentro de las primeras 2 horas. Escríbenos por WhatsApp o email lo antes posible y haremos lo que podamos para ayudarte. Una vez enviado ya no podemos modificarlo.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="brand">QUEBIATH</span>
+      <span class="tagline">Boutique · Moda Femenina</span>
+      <p>By Quebiath Azul Morales Tejeda.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-btn"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#" class="social-btn"><i class="fa-brands fa-pinterest"></i></a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Colecciones</h4><ul><li><a href="catalogo.html">Vestidos</a></li><li><a href="catalogo.html">Blusas</a></li><li><a href="catalogo.html">Accesorios</a></li></ul></div>
+    <div class="footer-col"><h4>Info</h4><ul><li><a href="nosotras.html">Nosotras</a></li><li><a href="#">Envíos</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacidad</a></li><li><a href="#">Términos</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 QUEBIATH Boutique. By Quebiath Azul Morales Tejeda.</p>
+    <div class="footer-payments"><span class="payment-badge">🔒 SSL</span><span class="payment-badge">SET</span></div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
+<div class="toast" id="toast"></div>
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  function submitContact(e) {
+    e.preventDefault();
+    showToast('🎀 ¡Mensaje enviado! Te responderemos pronto.');
+    document.getElementById('contactForm').reset();
+  }
+  function toggleFaq(el) {
+    el.parentElement.classList.toggle('open');
+  }
+</script>
+</body>
+</html>

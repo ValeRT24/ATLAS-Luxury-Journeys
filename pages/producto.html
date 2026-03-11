@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Producto — QUEBIATH Boutique</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .tabs-nav { display: flex; gap: 0; border-bottom: 2px solid var(--beige); margin-bottom: 2rem; }
+    .tab-btn { padding: 0.8rem 1.6rem; font-size: 0.85rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -2px; transition: var(--transition); cursor: pointer; }
+    .tab-btn.active { color: var(--rose-dark); border-bottom-color: var(--rose); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .reviews-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .review-item { padding: 1.5rem; background: var(--cream); border-radius: var(--radius-sm); }
+    .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+    .review-name { font-weight: 600; font-size: 0.88rem; }
+    .review-date { font-size: 0.72rem; color: var(--muted); }
+    .review-text { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .feature-list li { font-size: 0.9rem; color: var(--muted); display: flex; align-items: center; gap: 0.6rem; }
+    .feature-list li::before { content: '✦'; color: var(--gold); font-size: 0.7rem; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <a href="../index.html" class="nav-logo">
+    <span class="brand">QUEBIATH</span>
+    <span class="tagline">Boutique · Moda Femenina</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Inicio</a></li>
+    <li><a href="catalogo.html">Catálogo</a></li>
+    <li><a href="nosotras.html">Nosotras</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <div class="nav-icons">
+    <button class="nav-icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <button class="nav-icon-btn"><i class="fa-regular fa-heart"></i></button>
+    <button class="nav-icon-btn" id="cartBtn">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <span class="cart-count" id="cartCount">3</span>
+    </button>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html">Inicio</a>
+  <a href="catalogo.html">Catálogo</a>
+  <a href="nosotras.html">Nosotras</a>
+  <a href="contacto.html">Contacto</a>
+</div>
+
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<aside class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Mi Bolsa</h3>
+    <button class="cart-close" onclick="closeCart()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-subtotal"><span class="label">Total</span><span class="value" id="cartTotalDisplay">$4,870 MXN</span></div>
+    <a href="checkout.html" class="btn btn-primary btn-full" style="margin-top:1rem;">Finalizar Compra <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</aside>
+
+<div style="margin-top:72px;">
+  <div class="page-hero" style="padding:5rem 2rem 2.5rem;">
+    <div class="breadcrumb" id="breadcrumb">
+      <a href="../index.html">Inicio</a><span>/</span>
+      <a href="catalogo.html">Catálogo</a><span>/</span>
+      <span id="breadcrumbName">Producto</span>
+    </div>
+  </div>
+</div>
+
+<div id="productDetail"></div>
+
+<!-- Tabs section -->
+<section style="background:white;padding:3rem 2rem;" id="productTabs">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="showTab('descripcion',this)">Descripción</button>
+      <button class="tab-btn" onclick="showTab('cuidados',this)">Cuidados</button>
+      <button class="tab-btn" onclick="showTab('resenas',this)">Reseñas</button>
+    </div>
+    <div id="tab-descripcion" class="tab-content active">
+      <p id="tabDesc" style="font-size:0.95rem;line-height:1.9;max-width:700px;color:var(--muted);"></p>
+      <ul class="feature-list" style="margin-top:1.5rem;" id="tabFeatures"></ul>
+    </div>
+    <div id="tab-cuidados" class="tab-content">
+      <ul class="feature-list">
+        <li>Lavar a mano o en ciclo delicado.</li>
+        <li>Agua fría máximo 30°C.</li>
+        <li>No usar secadora.</li>
+        <li>Planchar por el revés a temperatura baja.</li>
+        <li>Guardar en lugar seco y oscuro.</li>
+        <li>Limpeza en seco recomendada para tejidos especiales.</li>
+      </ul>
+    </div>
+    <div id="tab-resenas" class="tab-content">
+      <div class="reviews-list">
+        <div class="review-item">
+          <div class="review-header"><span class="review-name">Valentina R. <span class="stars">★★★★★</span></span><span class="review-date">Feb 2026</span></div>
+          <p class="review-text">"Increíble calidad. La tela es súper suave y la hechura es perfecta. Ya voy a comprar otra en diferente color. 100% recomendado."</p>
+        </div>
+        <div class="review-item">
+          <div class="review-header"><span class="review-name">Mariana F. <span class="stars">★★★★★</span></span><span class="review-date">Ene 2026</span></div>
+          <p class="review-text">"Me llegó súper rápido y muy bien empaquetado. La pieza es exactamente como en las fotos. ¡Me encantó!"</p>
+        </div>
+        <div class="review-item">
+          <div class="review-header"><span class="review-name">Sofía T. <span class="stars">★★★★☆</span></span><span class="review-date">Dic 2025</span></div>
+          <p class="review-text">"Muy linda la prenda. Le doy 4 estrellas porque la talla corrió un poco grande pero aún así queda perfecto. ¡Lo amo!"</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Related products -->
+<section style="padding:4rem 2rem;background:var(--cream);">
+  <div class="section-header">
+    <p class="section-eyebrow">✦ También te puede gustar</p>
+    <h2 class="section-title">Piezas <span>relacionadas</span></h2>
+  </div>
+  <div class="products-grid container" id="relatedProducts"></div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="brand">QUEBIATH</span>
+      <span class="tagline">Boutique · Moda Femenina</span>
+      <p>By Quebiath Azul Morales Tejeda.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-btn"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#" class="social-btn"><i class="fa-brands fa-pinterest"></i></a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Colecciones</h4><ul><li><a href="catalogo.html">Vestidos</a></li><li><a href="catalogo.html">Blusas</a></li><li><a href="catalogo.html">Accesorios</a></li></ul></div>
+    <div class="footer-col"><h4>Ayuda</h4><ul><li><a href="#">FAQ</a></li><li><a href="#">Envíos</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacidad</a></li><li><a href="#">Términos</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 QUEBIATH Boutique. By Quebiath Azul Morales Tejeda.</p>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
+<div class="toast" id="toast"></div>
+
+<script src="../js/data.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  // Obtener id del producto desde URL
+  const params = new URLSearchParams(window.location.search);
+  const pid = parseInt(params.get('id')) || 1;
+  let selectedSize = null;
+  let selectedColor = null;
+  let qty = 1;
+
+  function loadProduct() {
+    const p = DB.query.getById(pid);
+    if (!p) { document.getElementById('productDetail').innerHTML = '<p style="padding:3rem;text-align:center;">Producto no encontrado.</p>'; return; }
+
+    document.title = `${p.name} — QUEBIATH Boutique`;
+    document.getElementById('breadcrumbName').textContent = p.name;
+
+    // Stars
+    const starsHtml = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 ? '½' : '');
+
+    // Color options
+    const colorsHtml = p.colors.map((c, i) =>
+      `<div class="color-option${i === 0 ? ' active' : ''}" style="background:${c};border-color:${c};" onclick="selectColor('${c}',this)" title="${c}"></div>`
+    ).join('');
+
+    // Size options
+    const sizesHtml = p.sizes.map((s, i) =>
+      `<button class="size-btn${i === 0 ? ' active' : ''}" onclick="selectSize('${s}',this)">${s}</button>`
+    ).join('');
+
+    selectedSize = p.sizes[0];
+    selectedColor = p.colors[0];
+
+    const badgeMap = { new: 'badge-new', sale: 'badge-sale', hot: 'badge-hot' };
+    const badgeLabel = { new: 'Nuevo', sale: `−${p.discount}%`, hot: '🔥 Hot' };
+
+    document.getElementById('productDetail').innerHTML = `
+    <div class="product-detail">
+      <div class="product-gallery">
+        <div class="gallery-main">
+          <img src="${p.images[0]}" alt="${p.name}" id="mainImg">
+        </div>
+        <div class="gallery-thumbs" id="thumbs">
+          ${p.images.map((img, i) => `
+            <div class="gallery-thumb${i===0?' active':''}" onclick="changeImg('${img}',this)">
+              <img src="${img}" alt="${p.name} ${i+1}">
+            </div>`).join('')}
+        </div>
+      </div>
+      <div class="detail-info">
+        ${p.badge ? `<span class="product-badge ${badgeMap[p.badge]}" style="display:inline-flex;margin-bottom:0.8rem;">${badgeLabel[p.badge]}</span>` : ''}
+        <div class="detail-brand">${p.brand}</div>
+        <h1 class="detail-title">${p.name}</h1>
+        <div class="detail-rating">
+          <span class="stars">${starsHtml}</span>
+          <span class="count">(${p.reviews} reseñas)</span>
+        </div>
+        <div class="detail-price-wrap">
+          <span class="detail-price">$${p.price.toLocaleString('es-MX')} MXN</span>
+          ${p.originalPrice ? `<span class="detail-original-price">$${p.originalPrice.toLocaleString('es-MX')}</span>` : ''}
+          ${p.discount ? `<span class="detail-discount-badge">−${p.discount}%</span>` : ''}
+        </div>
+        <p class="detail-desc">${p.description}</p>
+
+        <span class="detail-option-label">Color seleccionado: <span id="colorLabel" style="color:var(--rose-dark);font-style:italic;">${p.colors[0]}</span></span>
+        <div class="color-options" id="colorOptions">${colorsHtml}</div>
+
+        <span class="detail-option-label">Talla: <span id="sizeLabel" style="color:var(--rose-dark);font-style:italic;">${p.sizes[0]}</span></span>
+        <div class="size-options" id="sizeOptions">${sizesHtml}</div>
+        <a href="#" style="font-size:0.75rem;color:var(--gold);text-decoration:underline;display:block;margin-top:-0.6rem;margin-bottom:1.2rem;">Guía de tallas</a>
+
+        <div class="qty-selector">
+          <span style="font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--charcoal);">Cantidad</span>
+          <div class="qty-control">
+            <button class="qty-mod" onclick="changeQtyDetail(-1)">−</button>
+            <span class="qty-display" id="qtyDisplay">1</span>
+            <button class="qty-mod" onclick="changeQtyDetail(1)">+</button>
+          </div>
+        </div>
+
+        <div class="detail-actions">
+          <button class="btn btn-primary" onclick="addDetailToCart()">
+            <i class="fa-solid fa-bag-shopping"></i> Agregar a bolsa
+          </button>
+          <button class="wishlist-btn" onclick="this.classList.toggle('active');this.innerHTML=this.classList.contains('active')?'<i class=\\'fa-solid fa-heart\\'></i>':'<i class=\\'fa-regular fa-heart\\'></i>'">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+        </div>
+        <a href="checkout.html" class="btn btn-rose btn-full" style="margin-bottom:1.5rem;">
+          <i class="fa-solid fa-bolt"></i> Comprar ahora
+        </a>
+
+        <div class="detail-badges">
+          <div class="detail-badge-item"><i class="fa-solid fa-lock"></i> Pago 100% seguro</div>
+          <div class="detail-badge-item"><i class="fa-solid fa-truck"></i> Envío gratis +$2K</div>
+          <div class="detail-badge-item"><i class="fa-solid fa-rotate-left"></i> Devolución 30 días</div>
+          <div class="detail-badge-item"><i class="fa-solid fa-certificate"></i> Certificado SSL</div>
+        </div>
+      </div>
+    </div>`;
+
+    // Tab description
+    document.getElementById('tabDesc').textContent = p.description;
+    document.getElementById('tabFeatures').innerHTML = [
+      'Materiales de alta calidad seleccionados a mano.',
+      'Hechura con atención al detalle en cada costura.',
+      'Diseño exclusivo QUEBIATH Boutique.',
+      `Disponible en ${p.sizes.join(', ')}`,
+      `Rating: ${p.rating}/5 ⭐ (${p.reviews} reseñas verificadas)`
+    ].map(f => `<li>${f}</li>`).join('');
+
+    // Related products
+    const related = DB.query.getAllProducts().filter(pr => pr.id !== pid).slice(0,4);
+    document.getElementById('relatedProducts').innerHTML = related.map(pr => renderProductCard(pr)).join('');
+  }
+
+  function changeImg(src, thumb) {
+    document.getElementById('mainImg').src = src;
+    document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+    thumb.classList.add('active');
+  }
+
+  function selectColor(color, el) {
+    selectedColor = color;
+    document.querySelectorAll('.color-option').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('colorLabel').textContent = color;
+  }
+
+  function selectSize(size, el) {
+    selectedSize = size;
+    document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('sizeLabel').textContent = size;
+  }
+
+  function changeQtyDetail(delta) {
+    qty = Math.max(1, qty + delta);
+    document.getElementById('qtyDisplay').textContent = qty;
+  }
+
+  function addDetailToCart() {
+    for (let i = 0; i < qty; i++) {
+      DB.query.addToCart(pid, selectedSize, selectedColor);
+    }
+    updateCartFooter();
+    const p = DB.query.getById(pid);
+    showToast(`🛍️ ${p.name} (x${qty}) agregado a tu bolsa`);
+    openCart();
+  }
+
+  function showTab(id, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + id).classList.add('active');
+  }
+
+  loadProduct();
+</script>
+</body>
+</html>
