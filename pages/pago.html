@@ -121,7 +121,7 @@
               <div class="cvv-value" id="cardDisplayCvv">•••</div>
             </div>
             <div style="margin-top:1rem;font-size:0.7rem;opacity:0.6;line-height:1.5;">
-              Este sitio utiliza protocolo SET (Secure Electronic Transaction) y certificado SSL 256-bit para proteger tu información de pago.
+              Sitio protegido con certificado SSL 256-bit. Tu información de pago está cifrada en todo momento.
             </div>
           </div>
         </div>
@@ -205,20 +205,6 @@
         </div>
       </div>
 
-      <!-- SET badge -->
-      <div class="set-badge">
-        <h4><i class="fa-solid fa-certificate" style="margin-right:0.5rem;color:var(--gold-light);"></i>Protocolo SET — Secure Electronic Transaction</h4>
-        <p>Integración con Visa y Mastercard para autenticación de transacciones. Tu banco verifica cada compra en tiempo real.</p>
-        <div class="badges-row">
-          <span class="mini-badge">🔒 SSL/TLS 1.3</span>
-          <span class="mini-badge">✅ SET Protocol</span>
-          <span class="mini-badge">🏦 3D Secure</span>
-          <span class="mini-badge">Visa Verified</span>
-          <span class="mini-badge">MC SecureCode</span>
-          <span class="mini-badge">PCI DSS</span>
-        </div>
-      </div>
-
       <button class="btn btn-primary btn-full btn-pulse" style="margin-top:1.5rem;font-size:1rem;padding:1.1rem;" onclick="submitPayment()">
         <i class="fa-solid fa-lock"></i> Pagar ahora — <span id="payNowTotal">$4,870 MXN</span>
       </button>
@@ -265,7 +251,7 @@
       <div style="padding:1rem 1.5rem;font-size:0.75rem;color:var(--muted);border-top:1px solid var(--beige);">
         <div style="display:flex;gap:0.5rem;align-items:flex-start;margin-bottom:0.6rem;">
           <i class="fa-solid fa-lock" style="color:var(--gold);margin-top:2px;"></i>
-          <span>Transacción protegida con SSL 256-bit y protocolo SET de Visa/Mastercard.</span>
+          <span>Transacción protegida con cifrado SSL 256-bit.</span>
         </div>
         <div style="display:flex;gap:0.5rem;align-items:flex-start;">
           <i class="fa-solid fa-rotate-left" style="color:var(--gold);margin-top:2px;"></i>
@@ -306,7 +292,7 @@
     </div>
     <button class="btn btn-primary btn-full" onclick="confirmOtp()" style="margin-bottom:1rem;">Verificar y pagar</button>
     <div class="otp-resend">¿No recibiste el código? <button onclick="showToast('📱 Reenvío en proceso...')">Reenviar</button></div>
-    <p style="font-size:0.7rem;margin-top:1rem;color:var(--muted);">🔒 Proceso 3D Secure — Protocolo SET activo</p>
+    <p style="font-size:0.7rem;margin-top:1rem;color:var(--muted);">🔒 Proceso 3D Secure activo</p>
   </div>
 </div>
 
