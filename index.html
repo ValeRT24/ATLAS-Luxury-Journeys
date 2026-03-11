@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QUEBIATH — Boutique de Moda</title>
+  <meta name="description" content="Boutique de moda femenina. Piezas cuidadas con amor para la mujer moderna. By Quebiath Azul Morales Tejeda.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <span class="brand">QUEBIATH</span>
+    <span class="tagline">Boutique · Moda Femenina</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Inicio</a></li>
+    <li><a href="pages/catalogo.html">Catálogo</a></li>
+    <li><a href="pages/nosotras.html">Nosotras</a></li>
+    <li><a href="pages/contacto.html">Contacto</a></li>
+  </ul>
+  <div class="nav-icons">
+    <button class="nav-icon-btn" aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <button class="nav-icon-btn" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></button>
+    <button class="nav-icon-btn" id="cartBtn" aria-label="Carrito">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <span class="cart-count" id="cartCount">3</span>
+    </button>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Inicio</a>
+  <a href="pages/catalogo.html">Catálogo</a>
+  <a href="pages/nosotras.html">Nosotras</a>
+  <a href="pages/contacto.html">Contacto</a>
+</div>
+
+<!-- ============ CART SIDEBAR ============ -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<aside class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Mi Bolsa <span style="font-size:0.75rem;color:var(--muted);font-style:italic;">(3 piezas)</span></h3>
+    <button class="cart-close" onclick="closeCart()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <!-- items rendered by JS -->
+  </div>
+  <div class="cart-footer">
+    <div class="cart-subtotal"><span class="label">Subtotal</span><span class="value">$4,870 MXN</span></div>
+    <div class="cart-subtotal"><span class="label">Envío</span><span class="value">Gratis 🎀</span></div>
+    <div class="cart-total"><span class="label">Total</span><span class="value">$4,870 MXN</span></div>
+    <a href="pages/checkout.html" class="btn btn-primary btn-full">Finalizar Compra <i class="fa-solid fa-arrow-right"></i></a>
+    <a href="pages/catalogo.html" class="btn btn-outline btn-full" style="margin-top:0.6rem;">Seguir Comprando</a>
+  </div>
+</aside>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee-banner" style="margin-top:72px;">
+  <div class="marquee-track" id="marqueeTrack">
+    <span class="marquee-item"><span class="dot"></span>Envío gratis en compras mayores a $2,000 MXN</span>
+    <span class="marquee-item"><span class="dot"></span>Nueva colección Primavera 2026</span>
+    <span class="marquee-item"><span class="dot"></span>Pago seguro — SSL certificado</span>
+    <span class="marquee-item"><span class="dot"></span>Devoluciones gratis en 30 días</span>
+    <span class="marquee-item"><span class="dot"></span>Envío gratis en compras mayores a $2,000 MXN</span>
+    <span class="marquee-item"><span class="dot"></span>Nueva colección Primavera 2026</span>
+    <span class="marquee-item"><span class="dot"></span>Pago seguro — SSL certificado</span>
+    <span class="marquee-item"><span class="dot"></span>Devoluciones gratis en 30 días</span>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-shape"></div>
+  <div class="hero-shape2"></div>
+  <div class="hero-content">
+    <div class="hero-text animate-fade-up">
+      <p class="hero-eyebrow">✦ Colección Primavera · Verano 2026</p>
+      <h1 class="hero-title">Viste tu<br><span>historia,</span><br>define tu estilo</h1>
+      <p class="hero-desc">Piezas únicas seleccionadas con amor para la mujer que sabe exactamente quién es — y lo lleva puesto.</p>
+      <div class="hero-actions">
+        <a href="pages/catalogo.html" class="btn btn-primary btn-pulse">Explorar Colección <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="pages/nosotras.html" class="btn btn-outline">Nuestra historia</a>
+      </div>
+    </div>
+    <div class="hero-img-wrap animate-fade-up delay-200">
+      <div class="hero-img-frame">
+        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600&q=80" alt="Modelo QUEBIATH Primavera 2026">
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-icon">🎀</div>
+        <div class="hero-badge-text">
+          <div class="label">Creado con amor por</div>
+          <div class="value">Quebiath Azul M.T.</div>
+        </div>
+      </div>
+      <div class="hero-floating-tag">✦ New Collection</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section style="background:white;padding:3rem 2rem;">
+  <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;text-align:center;">
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--charcoal);font-weight:700;">+500</div>
+      <div style="font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Piezas únicas</div>
+    </div>
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--charcoal);font-weight:700;">4.9★</div>
+      <div style="font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Rating clientes</div>
+    </div>
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--charcoal);font-weight:700;">+2K</div>
+      <div style="font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Clientas felices</div>
+    </div>
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--charcoal);font-weight:700;">Free</div>
+      <div style="font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Envíos +$2,000</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CATEGORIES ============ -->
+<section id="categorias">
+  <div class="section-header">
+    <p class="section-eyebrow">✦ Explora por categoría</p>
+    <h2 class="section-title">Encuentra tu <span>estilo</span></h2>
+    <p class="section-desc">Desde lo casual hasta lo posh — todo lo que necesitas para brillar.</p>
+  </div>
+  <div class="categories-grid container">
+    <div class="category-card" onclick="window.location='pages/catalogo.html'">
+      <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=700&q=80" alt="Vestidos" class="category-img">
+      <div class="category-overlay"></div>
+      <div class="category-info"><h3>Vestidos</h3><span>87 piezas</span></div>
+      <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+    </div>
+    <div class="category-card" onclick="window.location='pages/catalogo.html'">
+      <img src="https://images.unsplash.com/photo-1554412933-514a83d2f3cd?w=400&q=80" alt="Blusas" class="category-img">
+      <div class="category-overlay"></div>
+      <div class="category-info"><h3>Blusas</h3><span>124 piezas</span></div>
+      <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+    </div>
+    <div class="category-card" onclick="window.location='pages/catalogo.html'">
+      <img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=400&q=80" alt="Pantalones" class="category-img">
+      <div class="category-overlay"></div>
+      <div class="category-info"><h3>Pantalones</h3><span>56 piezas</span></div>
+      <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+    </div>
+    <div class="category-card" onclick="window.location='pages/catalogo.html'">
+      <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=400&q=80" alt="Accesorios" class="category-img">
+      <div class="category-overlay"></div>
+      <div class="category-info"><h3>Accesorios</h3><span>200+ piezas</span></div>
+      <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+    </div>
+    <div class="category-card" onclick="window.location='pages/catalogo.html'">
+      <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=400&q=80" alt="Faldas" class="category-img">
+      <div class="category-overlay"></div>
+      <div class="category-info"><h3>Faldas</h3><span>39 piezas</span></div>
+      <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURED PRODUCTS ============ -->
+<section style="background:white;" id="nuevos">
+  <div class="section-header">
+    <p class="section-eyebrow">✦ Recién llegados</p>
+    <h2 class="section-title">Lo más <span>nuevo</span></h2>
+  </div>
+  <div class="filter-tabs container">
+    <button class="filter-tab active" data-filter="all">Todos</button>
+    <button class="filter-tab" data-filter="vestidos">Vestidos</button>
+    <button class="filter-tab" data-filter="blusas">Blusas</button>
+    <button class="filter-tab" data-filter="pantalones">Pantalones</button>
+    <button class="filter-tab" data-filter="accesorios">Accesorios</button>
+  </div>
+  <div class="products-grid container" id="featuredProducts">
+    <!-- Products rendered by JS -->
+  </div>
+  <div style="text-align:center;margin-top:3rem;">
+    <a href="pages/catalogo.html" class="btn btn-outline">Ver toda la colección <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</section>
+
+<!-- ============ PROMO BANNER ============ -->
+<div class="promo-banner">
+  <p class="hero-eyebrow" style="color:var(--gold-light);">✦ Oferta limitada</p>
+  <h2>20% OFF en tu primera compra</h2>
+  <p>Usa el código al finalizar tu pedido y enamórate de cada pieza.</p>
+  <div class="promo-code">
+    <span>QUEBIATH20</span>
+    <button onclick="copyCode()" id="copyBtn">Copiar código</button>
+  </div>
+  <a href="pages/catalogo.html" class="btn btn-rose">Comprar ahora <i class="fa-solid fa-arrow-right"></i></a>
+</div>
+
+<!-- ============ BEST SELLERS ============ -->
+<section id="bestsellers">
+  <div class="section-header">
+    <p class="section-eyebrow">✦ Top ventas</p>
+    <h2 class="section-title">Ellas ya las <span>aman</span></h2>
+  </div>
+  <div class="products-grid container" id="bestsellerProducts"></div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testimonials">
+  <div class="section-header">
+    <p class="section-eyebrow">✦ Lo que dicen de nosotras</p>
+    <h2 class="section-title">Amor de <span>clientas</span></h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Literalmente no puedo parar de comprar. Cada pieza llega perfectamente empaquetada, la calidad es increíble y el servicio al cliente es un 10/10. ¡Los amo!"</p>
+      <div class="testimonial-author">
+        <div class="author-avatar" style="background:var(--blush);display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🌸</div>
+        <div><div class="author-name">Valentina R.</div><div class="author-handle">@valen.style</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"El vestido rosado que compré para el cumpleaños de mi mejor amiga fue un éxito total. Todo el mundo me preguntó dónde lo conseguí. ¡Quebiath forever!"</p>
+      <div class="testimonial-author">
+        <div class="author-avatar" style="background:var(--beige);display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🎀</div>
+        <div><div class="author-name">Mariana F.</div><div class="author-handle">@mari.closet</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"El envío llegó súper rápido y el empaque es tan bonito que da pena abrirlo. Ya voy en mi quinta compra y no me arrepiento de nada. Atención de primera."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar" style="background:var(--gold-light);display:flex;align-items:center;justify-content:center;font-size:1.2rem;">💛</div>
+        <div><div class="author-name">Sofía T.</div><div class="author-handle">@sofi.looks</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER ============ -->
+<section class="newsletter">
+  <p class="section-eyebrow">✦ Club exclusivo</p>
+  <h2>Únete a la lista <span style="font-style:italic;color:var(--rose-dark);">VIP</span></h2>
+  <p>Recibe primero las nuevas colecciones, descuentos exclusivos y contenido de moda. Sin spam, prometido. 🎀</p>
+  <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+    <input type="email" placeholder="tu@email.com" required autocomplete="email">
+    <button type="submit">Suscribirse</button>
+  </form>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="brand">QUEBIATH</span>
+      <span class="tagline">Boutique · Moda Femenina</span>
+      <p>Un espacio creado con amor para la mujer que merece lo mejor. Cada pieza cuenta una historia — que sea la tuya.<br><br>By Quebiath Azul Morales Tejeda.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-btn" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#" class="social-btn" aria-label="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+        <a href="#" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Colecciones</h4>
+      <ul>
+        <li><a href="pages/catalogo.html">Vestidos</a></li>
+        <li><a href="pages/catalogo.html">Blusas</a></li>
+        <li><a href="pages/catalogo.html">Pantalones</a></li>
+        <li><a href="pages/catalogo.html">Faldas</a></li>
+        <li><a href="pages/catalogo.html">Accesorios</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Información</h4>
+      <ul>
+        <li><a href="pages/nosotras.html">Nosotras</a></li>
+        <li><a href="#">Guía de tallas</a></li>
+        <li><a href="#">Envíos y devoluciones</a></li>
+        <li><a href="#">Cuidado de prendas</a></li>
+        <li><a href="pages/contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Ayuda</h4>
+      <ul>
+        <li><a href="#">Preguntas frecuentes</a></li>
+        <li><a href="#">Estado de mi pedido</a></li>
+        <li><a href="#">Política de privacidad</a></li>
+        <li><a href="#">Términos y condiciones</a></li>
+        <li><a href="#">SSL & Seguridad</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 QUEBIATH Boutique. Con amor por Quebiath Azul Morales Tejeda. Todos los derechos reservados.</p>
+    <div class="footer-payments">
+      <span class="payment-badge">🔒 SSL</span>
+      <span class="payment-badge">Visa</span>
+      <span class="payment-badge">MC</span>
+      <span class="payment-badge">AMEX</span>
+      <span class="payment-badge">SET</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll Top -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Ir arriba"><i class="fa-solid fa-arrow-up"></i></button>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
