@@ -14,8 +14,8 @@ const DB = {
       sizes: ["XS","S","M","L"],
       description: "Vestido midi floral con escote en V y mangas abullonadas. Tela ligera 100% viscosa perfecta para los días más cálidos.",
       images: [
-        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=600&q=80",
-        "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600&q=80"
+        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=600&q=80"
       ],
       rating: 4.9, reviews: 87
     },
@@ -27,8 +27,8 @@ const DB = {
       sizes: ["XS","S","M","L","XL"],
       description: "Blusa de seda con detalles de encaje en el cuello. Elegante y versátil — de la oficina a la noche sin esfuerzo.",
       images: [
-        "https://images.unsplash.com/photo-1564257577-0d8f89ef3e7b?w=600&q=80",
-        "https://images.unsplash.com/photo-1551163943-3f7d25c813b6?w=600&q=80"
+        "https://images.unsplash.com/photo-1564257577-0d8f89ef3e7b?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=600&q=80"
       ],
       rating: 4.8, reviews: 34
     },
@@ -40,8 +40,8 @@ const DB = {
       sizes: ["XS","S","M","L"],
       description: "Pantalón palazzo de tiro alto en satén champagne. Corte amplio que fluye con cada movimiento. Cómodo y ultra femenino.",
       images: [
-        "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80",
-        "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=600&q=80"
+        "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?auto=format&fit=crop&w=600&q=80"
       ],
       rating: 4.7, reviews: 56
     },
@@ -53,8 +53,8 @@ const DB = {
       sizes: ["S","M","L"],
       description: "Conjunto de dos piezas: top crop con lazo y falda midi plisada. La definición de cottage chic.",
       images: [
-        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80",
-        "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&q=80"
+        "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=600&q=80"
       ],
       rating: 5.0, reviews: 112
     },
@@ -66,8 +66,8 @@ const DB = {
       sizes: ["XS","S","M","L","XL"],
       description: "Falda midi plisada con cintura elástica. Ligera como el aire, perfecta para cualquier ocasión.",
       images: [
-        "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&q=80",
-        "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&q=80"
+        "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=600&q=80"
       ],
       rating: 4.6, reviews: 29
     },
@@ -79,8 +79,8 @@ const DB = {
       sizes: ["Única"],
       description: "Bolso mini de satén con correa dorada ajustable. El accesorio que transforma cualquier outfit.",
       images: [
-        "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=600&q=80",
-        "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80"
+        "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=600&q=80"
       ],
       rating: 4.9, reviews: 67
     },
@@ -92,8 +92,8 @@ const DB = {
       sizes: ["XS","S","M"],
       description: "Vestido de noche en terciopelo con escote asimétrico. Para la noche que merece ser recordada.",
       images: [
-        "https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=600&q=80",
-        "https://images.unsplash.com/photo-1566479179817-c6b8e8e78f23?w=600&q=80"
+        "https://images.unsplash.com/photo-1566479179817-c6b8e8e78f23?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=600&q=80"
       ],
       rating: 4.9, reviews: 43
     },
@@ -105,8 +105,8 @@ const DB = {
       sizes: ["XS","S","M","L"],
       description: "Blusa con bordado floral artesanal en el escote. Romántica y delicada — perfecta para el brunch dominical.",
       images: [
-        "https://images.unsplash.com/photo-1554412933-514a83d2f3cd?w=600&q=80",
-        "https://images.unsplash.com/photo-1564257577-0d8f89ef3e7b?w=600&q=80"
+        "https://images.unsplash.com/photo-1554412933-514a83d2f3cd?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1551163943-3f7d25c813b6?auto=format&fit=crop&w=600&q=80"
       ],
       rating: 4.7, reviews: 21
     }
